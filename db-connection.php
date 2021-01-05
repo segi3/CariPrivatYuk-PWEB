@@ -14,7 +14,7 @@ function open_connection() {
     }
 
     if (!$con->select_db('pweb_fp')) {
-        echo "Could not select database" . $con->error;
+        echo "Could not select database" . $con->error."<br>";
         if (!$con->query("CREATE DATABASE IF NOT EXISTS pweb_fp;")) {
             echo "Could not create database: " . $con->error."<br>";
         }else{

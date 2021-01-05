@@ -6,7 +6,7 @@ include('db-connection.php');
 $con = open_connection();
 
 // Fungsi untuk menajalankan pembuatan table
-function table_creation($table_name,$query){
+function table_creation($table_name,$query,$con){
 
     if ($con->query($query) == TRUE) {
         echo "Table ". $table_name ." created<br>";
@@ -28,7 +28,7 @@ CREATE TABLE tutors (
     path_foto  VARCHAR(255) NOT NULL
 );
 ";
-table_creation("mentors",$table_tutors);
+table_creation("tutors",$table_tutors,$con);
 
 
 $table_users = "
@@ -40,7 +40,7 @@ CREATE TABLE users (
     password VARCHAR(255) NOT NULL
 );
 ";
-table_creation("users",$table_users);
+table_creation("users",$table_users,$con);
 
 $table_categories = "
 CREATE TABLE categories (
@@ -49,7 +49,7 @@ CREATE TABLE categories (
     slug VARCHAR(255) NOT NULL
 );
 ";
-table_creation("categories",$table_categories);
+table_creation("categories",$table_categories,$con);
 
 $table_privates = "
 CREATE TABLE privates (
@@ -61,10 +61,10 @@ CREATE TABLE privates (
     method LONGTEXT NOT NULL,
 
     FOREIGN KEY (category_id) REFERENCES categories(id),
-    FOREIGN KEY (mentor_id) REFERENCES mentors(id)
+    FOREIGN KEY (mentor_id) REFERENCES tutors(id)
 );
 ";
-table_creation("privates",$table_privates);
+table_creation("privates",$table_privates,$con);
 
 $table_private_enrolls = "
 CREATE TABLE private_enrolls (
@@ -78,7 +78,7 @@ CREATE TABLE private_enrolls (
     FOREIGN KEY (private_id) REFERENCES privates(id)
 );
 ";
-table_creation("private_enrolls",$table_private_enrolls);
+table_creation("private_enrolls",$table_private_enrolls,$con);
 
 $table_transactions = "
 CREATE TABLE transactions (
@@ -94,7 +94,7 @@ CREATE TABLE transactions (
     FOREIGN KEY (private_id) REFERENCES privates(id)
 );
 ";
-table_creation("transactions",$table_transactions);
+table_creation("transactions",$table_transactions,$con);
 
 close_connection($con);
 

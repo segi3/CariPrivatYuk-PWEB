@@ -4,12 +4,12 @@ x<!DOCTYPE html>
 
 <head>
 
-    <meta charset="utf-8">
+<meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>KitaKursusKuy!</title>
+<title>CariKursusKuy!</title>
 
 
 <link href="assets/main_resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -58,7 +58,7 @@ x<!DOCTYPE html>
     <!-- Navigation -->
     <nav id="navorange" class="navbar fixed-top navbar-expand-lg fixed-top">
     <div class="container">
-        <a class="navbar-brand" href="/"><span id="jd1">Kita</span><span id="jd2">Kursus</span><span id="jd3">Kuy!</span></a>
+        <a class="navbar-brand" href="/KitaKursusKuy-PWEB/"><span id="jd1">Kita</span><span id="jd2">Kursus</span><span id="jd3">Kuy!</span></a>
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
             data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
             aria-label="Toggle navigation">
