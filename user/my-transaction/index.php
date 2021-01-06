@@ -9,7 +9,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>CariPrivatYuk! - Register Tutor</title>
+<title>CariPrivatYuk! - My Trasaction</title>
 
 
 <link href="../../assets/main_resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -25,20 +25,16 @@
 
 
 <style>
-    .register {
+    .kursus-head {
         margin-top: 40px;
     }
 
     .child-div {
         height: 100%
     }
-
-    #register-area {
-        height: 100vh;
-    }
     .dropdown:hover .dropdown-menu {
-        display: block !important;
-    }
+            display: block !important;
+        }
 </style>
 
 
@@ -46,23 +42,20 @@
 
 <body>
 
-    <!-- Navigation -->
-    <nav id="navorange" class="navbar fixed-top navbar-expand-lg fixed-top">
+<nav id="navorange" class="navbar fixed-top navbar-expand-lg fixed-top">
         <div class="container">
-            <a class="navbar-brand" href="/CariKursusYuk-PWEB/"><span id="jd1">Cari</span><span
-                    id="jd2">Privat</span><span id="jd3">Yuk!</span></a>
+            <a class="navbar-brand" href="/"><span id="jd1">Kita</span><span id="jd2">Kursus</span><span
+                    id="jd3">Kuy!</span></a>
             <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
                 data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
                 aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
-                <!-- Form cari nama tutor -->
                 <form class="form-inline my-2 my-lg-0">
                     <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
                     <button class="btn btn-primary my-2 my-sm-0" type="submit">Cari</button>
                 </form>
-
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item dropdown">
                         <a class="nav-link" href="/KitaKursusKuy-PWEB">Home</a>
@@ -85,18 +78,19 @@
                         </div>
                     </li>
                     <li class="nav-item dropdown">
-                         <a href="/KitaKursusKuy-PWEB/login" class="nav-link dropdown-toggle" id="navbarDropdownBlog">Login <span class="caret"></span></a>
-                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
-                            <a class="dropdown-item" href="/KitaKursusKuy-PWEB/login/user">User</a>
-                            <a class="dropdown-item" href="/KitaKursusKuy-PWEB/login/tutor">Tutor</a>
+                        <!-- <a class="nav-link dropdown-toggle" href="user/" id="navbarDropdownPages" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
+                            Rafi Nizar A.
+                        </a> -->
+                        <a href="/KitaKursusKuy-PWEB/user" class="nav-link dropdown-toggle"
+                            id="navbarDropdownBlog">Nama Pengguna <span class="caret"></span></a>
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPages">
+                            <a class="dropdown-item" href="/KitaKursusKuy-PWEB/user/my-privat">My Privat</a>
+                            <a class="dropdown-item" href="/KitaKursusKuy-PWEB/user/my-transaction">My Transaction</a>
                         </div>
                     </li>
                     <li class="nav-item dropdown">
-                         <a href="/KitaKursusKuy-PWEB/register" class="nav-link dropdown-toggle" id="navbarDropdownBlog">Register <span class="caret"></span></a>
-                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
-                            <a class="dropdown-item" href="/KitaKursusKuy-PWEB/register/user">User</a>
-                            <a class="dropdown-item active" href="/KitaKursusKuy-PWEB/register/tutor">Tutor</a>
-                        </div>
+                        <a class="nav-link" href="#">Logout</a>
                     </li>
                 </ul>
             </div>
@@ -106,41 +100,46 @@
     
         
     
-    <div class="container py-5 mt-5" id="register-area">
-    <div class="row register d-flex justify-content-center">
-        <div class="col-lg-4 parent-div">
-            <div class="row child-div">
-                <div class="col-12">
-                    <h3 id="daftar" style="font-weight: bold;">Daftar Tutor</h3>
-                    <form>
-                        <div class="form-group">
-                            <label for="username1">Nama Lengkap</label>
-                            <input type="text" class="form-control" name="username1" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="alamat1">Alamat</label>
-                            <input type="text" class="form-control" name="alamat1" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="email2">Email</label>
-                            <input type="email" class="form-control" name="email2" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="password2">Password</label>
-                            <input type="password" class="form-control" name="password2" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="BerkasKTP">Berkas KTP</label>
-                            <input type="file" class="form-control-file" id="BerkasKTP">
-                        </div>
-                        <div class="form-group">
-                            <label for="Foto">Foto anda</label>
-                            <input type="file" class="form-control-file" id="Foto">
-                        </div>
-                        <button type="submit" class="btn btn-primary">Daftar</button>
-                    </form>
-                </div>
+    <div class="pt-5" style="background-color: #F3F3F3; height: 1000px;">
+    <div class="container">
+        <div class="row">
 
+            <div class="col-lg-12 mt-5">
+                <h3 class="kursus-body-header mb-4">Transaksi Reservasi Privat</h3>
+                <div class="card border-0 px-3">
+                    <div class="card-body">
+                        <div class="row mt-2">
+                            <div class="col-12 row">
+                                <table style="width:100%" class="table table-striped">
+                                    <tr>
+                                        <th>Invoice</th>
+                                        <th>Kursus</th>
+                                        <th>Tanggal</th>
+                                        <th>Jam</th>
+                                        <th>Harga</th>
+                                        <th>Status Pembayaran</th>
+                                    </tr>
+                                    <tr>
+                                        <td>PVT/CT1/U2/4</td>
+                                        <td>Mahir recorder dengan cepat!</td>
+                                        <td>14 Nov 2020</td>
+                                        <td>10</td>
+                                        <td>Rp 179.000</td>
+                                        <td><span class="badge badge-warning">Unpaid</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>PVT/CT1/U2/4</td>
+                                        <td>Bahasa Jepang</td>
+                                        <td>16 Nov 2020</td>
+                                        <td>10</td>
+                                        <td>Rp 179.000</td>
+                                        <td><span class="badge badge-success">Paid</span></td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -150,7 +149,7 @@
     
     <footer class="py-5">
     <div class="container">
-        <p class="m-0 text-center text-white">Copyright &copy; CariPrivatYuk 2021</p>
+        <p class="m-0 text-center text-white">Copyright &copy; KitaKursusKuy 2020</p>
     </div>
     <!-- /.container -->
 </footer>

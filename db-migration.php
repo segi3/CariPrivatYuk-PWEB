@@ -98,4 +98,14 @@ table_creation("transactions",$table_transactions,$con);
 
 close_connection($con);
 
+function table_insertion($table_name,$query,$con){
+
+    if ($con->query($query) == TRUE) {
+        echo "Table ". $table_name ." created<br>";
+    }else {
+        echo "Table ". $table_name ." not created: " . $con->error."<br>";
+    }
+
+}
+
 ?>

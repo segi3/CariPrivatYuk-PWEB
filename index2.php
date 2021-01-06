@@ -66,20 +66,18 @@
     <!-- Navigation -->
     <nav id="navorange" class="navbar fixed-top navbar-expand-lg fixed-top">
         <div class="container">
-            <a class="navbar-brand" href="/CariKursusYuk-PWEB/"><span id="jd1">Cari</span><span
-                    id="jd2">Privat</span><span id="jd3">Yuk!</span></a>
+            <a class="navbar-brand" href="/"><span id="jd1">Cari</span><span id="jd2">Privat</span><span
+                    id="jd3">Yuk!</span></a>
             <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
                 data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
                 aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
-                <!-- Form cari nama tutor -->
                 <form class="form-inline my-2 my-lg-0">
                     <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
                     <button class="btn btn-primary my-2 my-sm-0" type="submit">Cari</button>
                 </form>
-
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item dropdown">
                         <a class="nav-link" href="/KitaKursusKuy-PWEB">Home</a>
@@ -102,18 +100,19 @@
                         </div>
                     </li>
                     <li class="nav-item dropdown">
-                         <a href="/KitaKursusKuy-PWEB/login" class="nav-link dropdown-toggle" id="navbarDropdownBlog">Login <span class="caret"></span></a>
-                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
-                            <a class="dropdown-item" href="/KitaKursusKuy-PWEB/login/user">User</a>
-                            <a class="dropdown-item" href="/KitaKursusKuy-PWEB/login/tutor">Tutor</a>
+                        <!-- <a class="nav-link dropdown-toggle" href="user/" id="navbarDropdownPages" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
+                            Rafi Nizar A.
+                        </a> -->
+                        <a href="/KitaKursusKuy-PWEB/user" class="nav-link dropdown-toggle"
+                            id="navbarDropdownBlog">Nama Pengguna <span class="caret"></span></a>
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPages">
+                            <a class="dropdown-item" href="/KitaKursusKuy-PWEB/user/my-privat">My Privat</a>
+                            <a class="dropdown-item" href="/KitaKursusKuy-PWEB/user/my-transaction">My Transaction</a>
                         </div>
                     </li>
                     <li class="nav-item dropdown">
-                         <a href="/KitaKursusKuy-PWEB/register" class="nav-link dropdown-toggle" id="navbarDropdownBlog">Register <span class="caret"></span></a>
-                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
-                            <a class="dropdown-item" href="/KitaKursusKuy-PWEB/register/user">User</a>
-                            <a class="dropdown-item" href="/KitaKursusKuy-PWEB/register/tutor">Tutor</a>
-                        </div>
+                        <a class="nav-link" href="#">Logout</a>
                     </li>
                 </ul>
             </div>
@@ -370,7 +369,7 @@
 
     <footer class="py-5">
         <div class="container">
-            <p class="m-0 text-center text-white">Copyright &copy; CariKursusYuk 2020</p>
+            <p class="m-0 text-center text-white">Copyright &copy; CariKursusYuk 2021</p>
         </div>
         <!-- /.container -->
     </footer>
