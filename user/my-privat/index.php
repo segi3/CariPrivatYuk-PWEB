@@ -58,8 +58,8 @@
 
     <nav id="navorange" class="navbar fixed-top navbar-expand-lg fixed-top">
         <div class="container">
-            <a class="navbar-brand" href="/"><span id="jd1">Kita</span><span id="jd2">Kursus</span><span
-                    id="jd3">Kuy!</span></a>
+            <a class="navbar-brand" href="/"><span id="jd1">Cari</span><span id="jd2">Privat</span><span
+                    id="jd3">Yuk!</span></a>
             <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
                 data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
                 aria-label="Toggle navigation">
