@@ -154,7 +154,7 @@
     <div class="pt-5" style="background-color: #F3F3F3; height: 1000px;">
         <div class="container">
             <div class="row">
-                <div class="col-lg-5">
+                <!-- <div class="col-lg-5">
                     <div class="row">
                         <div class="col-12 mb-5">
                             <div class="card border-0">
@@ -174,14 +174,14 @@
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-lg-7">
-                    <div class="row">
+                </div> -->
+                <div class="col-lg-12" >
+                    <div class="row ">
                         <div class="col-12">
                             <div class="card border-0">
                                 <div class="card-body">
                                     <h5 class="mb-4 kursus-body-header">Metodologi</h5>
-                                    <p>
+                                    <p >
                                         Salah satu metodologi pengajaran saya adalah dengan sering mempraktekan bahasa
                                         inggris dengan siswa dan mengajak siswa untuk menggunakan vocabulary yang sudah
                                         siswa kuasai sehingga siswa terbiasa dan percaya diri dalam berbahasa Inggris.

@@ -230,7 +230,7 @@
         <div class="row" id="kurus-pop">
             <div class="col-lg-4 mb-4">
                 <div class="card h-100 border-0">
-                    <a href="/privat/1"><img class="card-img-top" src="assets/main_resources/kursus/mentor/1.jpg"
+                    <a href="privat"><img class="card-img-top" src="assets/main_resources/kursus/mentor/1.jpg"
                             alt=""></a>
                     <div class="card-body">
                         <h5 class="card-title">Eja Suryono</h5>
@@ -240,14 +240,14 @@
                                 <span class="price-tag">Rp 179.999 </span><span class="hr-tag">/jam</span>
                             </div>
 
-                            <a href="/privat/1" class="col-2 btn btn-primary beli-btn">Cek</a>
+                            <a href="privat" class="col-2 btn btn-primary beli-btn">Cek</a>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="col-lg-4 mb-4">
                 <div class="card h-100 border-0">
-                    <a href="/privat/2"><img class="card-img-top" src="assets/main_resources/kursus/mentor/2.jpg"
+                    <a href="privat"><img class="card-img-top" src="assets/main_resources/kursus/mentor/2.jpg"
                             alt=""></a>
                     <div class="card-body">
                         <h5 class="card-title">Chelsea Hassanah</h5>
@@ -257,14 +257,14 @@
                                 <span class="price-tag">Rp 179.999 </span><span class="hr-tag">/jam</span>
                             </div>
 
-                            <a href="/privat/2" class="col-2 btn btn-primary beli-btn">Cek</a>
+                            <a href="privat" class="col-2 btn btn-primary beli-btn">Cek</a>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="col-lg-4 mb-4">
                 <div class="card h-100 border-0">
-                    <a href="/privat/3"><img class="card-img-top" src="assets/main_resources/kursus/mentor/3.jpg"
+                    <a href="privat"><img class="card-img-top" src="assets/main_resources/kursus/mentor/3.jpg"
                             alt=""></a>
                     <div class="card-body">
                         <h5 class="card-title">Banara Wisnu Pranowo</h5>
@@ -274,14 +274,14 @@
                                 <span class="price-tag">Rp 179.999 </span><span class="hr-tag">/jam</span>
                             </div>
 
-                            <a href="/privat/3" class="col-2 btn btn-primary beli-btn">Cek</a>
+                            <a href="privat" class="col-2 btn btn-primary beli-btn">Cek</a>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="col-lg-4 mb-4">
                 <div class="card h-100 border-0">
-                    <a href="/privat/4"><img class="card-img-top" src="assets/main_resources/kursus/mentor/4.jpg"
+                    <a href="privat"><img class="card-img-top" src="assets/main_resources/kursus/mentor/4.jpg"
                             alt=""></a>
                     <div class="card-body">
                         <h5 class="card-title">Winda Prastuti</h5>
@@ -291,14 +291,14 @@
                                 <span class="price-tag">Rp 179.999 </span><span class="hr-tag">/jam</span>
                             </div>
 
-                            <a href="/privat/4" class="col-2 btn btn-primary beli-btn">Cek</a>
+                            <a href="privat" class="col-2 btn btn-primary beli-btn">Cek</a>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="col-lg-4 mb-4">
                 <div class="card h-100 border-0">
-                    <a href="/privat/5"><img class="card-img-top" src="assets/main_resources/kursus/mentor/5.jpg"
+                    <a href="privat"><img class="card-img-top" src="assets/main_resources/kursus/mentor/5.jpg"
                             alt=""></a>
                     <div class="card-body">
                         <h5 class="card-title">Irfan Maulana</h5>
@@ -308,14 +308,14 @@
                                 <span class="price-tag">Rp 179.999 </span><span class="hr-tag">/jam</span>
                             </div>
 
-                            <a href="/privat/5" class="col-2 btn btn-primary beli-btn">Cek</a>
+                            <a href="privat" class="col-2 btn btn-primary beli-btn">Cek</a>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="col-lg-4 mb-4">
                 <div class="card h-100 border-0">
-                    <a href="/privat/6"><img class="card-img-top" src="assets/main_resources/kursus/mentor/6.jpg"
+                    <a href="privat"><img class="card-img-top" src="assets/main_resources/kursus/mentor/6.jpg"
                             alt=""></a>
                     <div class="card-body">
                         <h5 class="card-title">Rini Paramita Lestari</h5>
@@ -325,7 +325,7 @@
                                 <span class="price-tag">Rp 179.999 </span><span class="hr-tag">/jam</span>
                             </div>
 
-                            <a href="/privat/6" class="col-2 btn btn-primary beli-btn">Cek</a>
+                            <a href="privat" class="col-2 btn btn-primary beli-btn">Cek</a>
                         </div>
                     </div>
                 </div>
@@ -370,7 +370,7 @@
 
     <footer class="py-5">
         <div class="container">
-            <p class="m-0 text-center text-white">Copyright &copy; CariKursusYuk 2020</p>
+            <p class="m-0 text-center text-white">Copyright &copy; CariKursusYuk 2021</p>
         </div>
         <!-- /.container -->
     </footer>
