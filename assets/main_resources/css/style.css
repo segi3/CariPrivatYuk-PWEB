@@ -27,7 +27,7 @@ span#jd3 {
 /* navbar orange */
 
 nav#navorange {
-    background: linear-gradient(to right, orange, #FD5901, #FAAB36, #fd5901a1);
+    background: linear-gradient(to right, #FD5901, #FAAB36, #fd5901a1, orange);
     height: 57px;
 }
 
