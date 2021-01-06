@@ -26,9 +26,11 @@ x<!DOCTYPE html>
 
 <style>
     body {
+        font-family: poppins;
         max-width: 100%;
         overflow-x: hidden;
     }
+
     #mentorSection {
         background-color: black;
     }
@@ -36,9 +38,11 @@ x<!DOCTYPE html>
     #kategoriSection {
         background-color: black;
     }
+
     #myVideo {
         width: 100vw;
     }
+
     #title-vid {
         position: absolute; /* Reposition logo from the natural layout */
         left: 75px;
@@ -120,8 +124,6 @@ x<!DOCTYPE html>
         </div>
     </div>
 </nav>
-    
-    
     <div style="background-color: black;">
     <video autoplay muted loop id="myVideo" style="z-index: -1;">
         <source src="assets/main_resources/superprof_trouvez-le-professeur-parfait_desktop.mp4" type="video/mp4">

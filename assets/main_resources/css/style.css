@@ -1,13 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap');
-
 body {
     font-family: 'Open Sans';
 }
 
 .btn-primary {
     background-color: #FD5901 !important;
-    border-color:  #FD5901 !important;
+    border-color: #FD5901 !important;
 }
+
 
 /* navbar global */
 
@@ -23,20 +23,23 @@ span#jd3 {
     font-weight: 300;
 }
 
+
 /* navbar orange */
 
 nav#navorange {
-    background-color: #FAAB36;
+    background: linear-gradient(to right, orange, #FD5901, #FAAB36, #fd5901a1);
     height: 75px;
 }
 
-nav#navorange a.nav-link, nav#navorange a.navbar-brand {
+nav#navorange a.nav-link,
+nav#navorange a.navbar-brand {
     color: #FFFFFF !important;
 }
 
 nav#navorange img {
     width: 50px;
 }
+
 
 /* navbar white */
 
@@ -45,7 +48,8 @@ nav#navwhite {
     height: 75px;
 }
 
-nav#navwhite a.nav-link, nav#navwhite a.navbar-brand {
+nav#navwhite a.nav-link,
+nav#navwhite a.navbar-brand {
     color: #FD5901 !important;
 }
 
@@ -53,7 +57,9 @@ nav#navwhite img {
     width: 50px;
 }
 
+
 /* home - mentor */
+
 .mheading {
     margin: 150px 0px 150px 50px;
     font-size: 55px;
@@ -97,23 +103,27 @@ nav#navwhite img {
     color: #FD5901;
 }
 
+
 /* footer */
 
 footer {
-    background-color:  #005F60;
+    background-color: #005F60;
 }
 
+
 /* home */
+
 .price-tag {
     font-weight: 600;
 }
+
 .hr-tag {
     font-weight: 300;
 }
 
 .ribbon-orange {
     margin: 0;
-    background-color:#fd5901a1;
+    background-color: #fd5901a1;
     color: #FFFFFF;
 }
 
@@ -145,7 +155,7 @@ footer {
 
 .ribbon-ligreen {
     margin: 0;
-    background-color:#249ea079;
+    background-color: #249ea079;
     color: #FFFFFF;
 }
 
@@ -159,13 +169,16 @@ footer {
     text-align: center;
 }
 
-#kategori-pop a, #kategori-pop a:hover {
+#kategori-pop a,
+#kategori-pop a:hover {
     color: #FFFFFF;
     text-decoration: none !important;
     font-size: 2em;
 }
 
+
 /* kursus page */
+
 #nama-kursus {
     color: #005F60;
     font-weight: 600;
@@ -183,7 +196,7 @@ footer {
     background-color: #F3F3F3;
     padding: 5px 10px;
     color: #249EA0;
-    white-space:nowrap;
+    white-space: nowrap;
 }
 
 .kursus-body-header {
