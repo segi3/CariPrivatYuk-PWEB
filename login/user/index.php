@@ -52,7 +52,7 @@
     <!-- Navigation -->
     <nav id="navorange" class="navbar fixed-top navbar-expand-lg fixed-top">
         <div class="container">
-            <a class="navbar-brand" href="/CariKursusYuk-PWEB/"><span id="jd1">Cari</span><span
+            <a class="navbar-brand" href="/CariPrivatYuk-PWEB/"><span id="jd1">Cari</span><span
                     id="jd2">Privat</span><span id="jd3">Yuk!</span></a>
             <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
                 data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
@@ -68,7 +68,7 @@
 
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item dropdown">
-                        <a class="nav-link" href="/KitaKursusKuy-PWEB">Home</a>
+                        <a class="nav-link" href="/CariPrivatYuk-PWEB">Home</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog" data-toggle="dropdown"
@@ -88,19 +88,19 @@
                         </div>
                     </li>
                     <li class="nav-item dropdown">
-                        <a href="/KitaKursusKuy-PWEB/login" class="nav-link dropdown-toggle"
+                        <a href="/CariPrivatYuk-PWEB/login" class="nav-link dropdown-toggle"
                             id="navbarDropdownBlog">Login <span class="caret"></span></a>
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
-                            <a class="dropdown-item active" href="/KitaKursusKuy-PWEB/login/user">User</a>
-                            <a class="dropdown-item" href="/KitaKursusKuy-PWEB/login/tutor">Tutor</a>
+                            <a class="dropdown-item active" href="/CariPrivatYuk-PWEB/login/user">User</a>
+                            <a class="dropdown-item" href="/CariPrivatYuk-PWEB/login/tutor">Tutor</a>
                         </div>
                     </li>
                     <li class="nav-item dropdown">
-                        <a href="/KitaKursusKuy-PWEB/register" class="nav-link dropdown-toggle"
+                        <a href="/CariPrivatYuk-PWEB/register" class="nav-link dropdown-toggle"
                             id="navbarDropdownBlog">Register <span class="caret"></span></a>
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
-                            <a class="dropdown-item" href="/KitaKursusKuy-PWEB/register/user">User</a>
-                            <a class="dropdown-item" href="/KitaKursusKuy-PWEB/register/tutor">Tutor</a>
+                            <a class="dropdown-item" href="/CariPrivatYuk-PWEB/register/user">User</a>
+                            <a class="dropdown-item" href="/CariPrivatYuk-PWEB/register/tutor">Tutor</a>
                         </div>
                     </li>
                 </ul>
@@ -130,7 +130,7 @@
                                     required>
                             </div>
                             <div class="form-group">
-                                Belum punya akun? <a href="/KitaKursusKuy-PWEB/register/user"> daftar disini </a>
+                                Belum punya akun? <a href="/CariPrivatYuk-PWEB/register/user"> daftar disini </a>
                             </div>
                             <button type="submit" class="btn btn-primary">Login</button>
                         </form>
@@ -144,7 +144,7 @@
 
     <footer class="py-5">
         <div class="container">
-            <p class="m-0 text-center text-white">Copyright &copy; CariKursusYuk 2021</p>
+            <p class="m-0 text-center text-white">Copyright &copy; CariPrivatYuk 2021</p>
         </div>
         <!-- /.container -->
     </footer>

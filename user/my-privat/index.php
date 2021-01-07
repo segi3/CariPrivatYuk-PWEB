@@ -72,7 +72,7 @@
                 </form>
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item dropdown">
-                        <a class="nav-link" href="/KitaKursusKuy-PWEB">Home</a>
+                        <a class="nav-link" href="/CariPrivatYuk-PWEB">Home</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog" data-toggle="dropdown"
@@ -96,11 +96,11 @@
                             aria-haspopup="true" aria-expanded="false">
                             Rafi Nizar A.
                         </a> -->
-                        <a href="/KitaKursusKuy-PWEB/user" class="nav-link dropdown-toggle"
+                        <a href="/CariPrivatYuk-PWEB/user" class="nav-link dropdown-toggle"
                             id="navbarDropdownBlog">Nama Pengguna <span class="caret"></span></a>
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPages">
-                            <a class="dropdown-item" href="/KitaKursusKuy-PWEB/user/my-privat">My Privat</a>
-                            <a class="dropdown-item" href="/KitaKursusKuy-PWEB/user/my-transaction">My Transaction</a>
+                            <a class="dropdown-item" href="/CariPrivatYuk-PWEB/user/my-privat">My Privat</a>
+                            <a class="dropdown-item" href="/CariPrivatYuk-PWEB/user/my-transaction">My Transaction</a>
                         </div>
                     </li>
                     <li class="nav-item dropdown">

@@ -51,7 +51,7 @@ x
     <!-- Navigation -->
     <nav id="navorange" class="navbar fixed-top navbar-expand-lg fixed-top">
         <div class="container">
-            <a class="navbar-brand" href="/CariKursusYuk-PWEB/"><span id="jd1">Cari</span><span
+            <a class="navbar-brand" href="/CariPrivatYuk-PWEB/"><span id="jd1">Cari</span><span
                     id="jd2">Privat</span><span id="jd3">Yuk!</span></a>
             <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
                 data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
@@ -67,7 +67,7 @@ x
 
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item dropdown">
-                        <a class="nav-link" href="/KitaKursusKuy-PWEB">Home</a>
+                        <a class="nav-link" href="/CariPrivatYuk-PWEB">Home</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog" data-toggle="dropdown"
@@ -87,17 +87,17 @@ x
                         </div>
                     </li>
                     <li class="nav-item dropdown">
-                         <a href="/KitaKursusKuy-PWEB/login" class="nav-link dropdown-toggle" id="navbarDropdownBlog">Login <span class="caret"></span></a>
+                         <a href="/CariPrivatYuk-PWEB/login" class="nav-link dropdown-toggle" id="navbarDropdownBlog">Login <span class="caret"></span></a>
                          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
-                            <a class="dropdown-item" href="/KitaKursusKuy-PWEB/login/user">User</a>
-                            <a class="dropdown-item" href="/KitaKursusKuy-PWEB/login/tutor">Tutor</a>
+                            <a class="dropdown-item" href="/CariPrivatYuk-PWEB/login/user">User</a>
+                            <a class="dropdown-item" href="/CariPrivatYuk-PWEB/login/tutor">Tutor</a>
                         </div>
                     </li>
                     <li class="nav-item dropdown">
-                         <a href="/KitaKursusKuy-PWEB/register" class="nav-link dropdown-toggle" id="navbarDropdownBlog">Register <span class="caret"></span></a>
+                         <a href="/CariPrivatYuk-PWEB/register" class="nav-link dropdown-toggle" id="navbarDropdownBlog">Register <span class="caret"></span></a>
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
-                            <a class="dropdown-item" href="/KitaKursusKuy-PWEB/register/user">User</a>
-                            <a class="dropdown-item" href="/KitaKursusKuy-PWEB/register/tutor">Tutor</a>
+                            <a class="dropdown-item" href="/CariPrivatYuk-PWEB/register/user">User</a>
+                            <a class="dropdown-item" href="/CariPrivatYuk-PWEB/register/tutor">Tutor</a>
                         </div>
                     </li>
                 </ul>
@@ -113,7 +113,7 @@ x
         <div class="d-flex justify-content-center">
             <a href="#" class="btn btn-primary ">Daftar Menjadi User!</a>
         </div>
-        <p class="mt-3">Sudah punya akun? <a href="/KitaKursusKuy-PWEB/login/user">Login</a> </p>
+        <p class="mt-3">Sudah punya akun? <a href="/CariPrivatYuk-PWEB/login/user">Login</a> </p>
     </div>
 
 
@@ -126,7 +126,7 @@ x
                 <div class="d-flex justify-content-center">
                     <a href="#" class="btn btn-primary ">Daftar tutor!</a>
                 </div>
-                <p class="mt-3">Sudah punya akun? <a href="/KitaKursusKuy-PWEB/login/tutor">Login</a> </p>
+                <p class="mt-3">Sudah punya akun? <a href="/CariPrivatYuk-PWEB/login/tutor">Login</a> </p>
             </div>
         </div>
     </div>

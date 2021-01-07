@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>CariKursusKuy! - Homepage</title>
+    <title>CariPrivatYuk! - Homepage</title>
 
 
     <link href="assets/main_resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -80,7 +80,7 @@
                 </form>
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item dropdown">
-                        <a class="nav-link" href="/KitaKursusKuy-PWEB">Home</a>
+                        <a class="nav-link" href="/CariPrivatYuk-PWEB">Home</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog" data-toggle="dropdown"
@@ -104,11 +104,11 @@
                             aria-haspopup="true" aria-expanded="false">
                             Rafi Nizar A.
                         </a> -->
-                        <a href="/KitaKursusKuy-PWEB/user" class="nav-link dropdown-toggle"
+                        <a href="/CariPrivatYuk-PWEB/user" class="nav-link dropdown-toggle"
                             id="navbarDropdownBlog">Nama Pengguna <span class="caret"></span></a>
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPages">
-                            <a class="dropdown-item" href="/KitaKursusKuy-PWEB/user/my-privat">My Privat</a>
-                            <a class="dropdown-item" href="/KitaKursusKuy-PWEB/user/my-transaction">My Transaction</a>
+                            <a class="dropdown-item" href="/CariPrivatYuk-PWEB/user/my-privat">My Privat</a>
+                            <a class="dropdown-item" href="/CariPrivatYuk-PWEB/user/my-transaction">My Transaction</a>
                         </div>
                     </li>
                     <li class="nav-item dropdown">
@@ -179,7 +179,7 @@
     <div id="caraKerja">
         <div class="container">
             <div class="" style="margin-top: 100px; margin-bottom: 100px;">
-                <h1 style="font-weight: 700; text-align: center;">Bagaimana cara kerja CariKursusYuk?</h1>
+                <h1 style="font-weight: 700; text-align: center;">Bagaimana cara kerja CariPrivatYuk?</h1>
             </div>
 
             <div class="row pt-5">
@@ -369,7 +369,7 @@
 
     <footer class="py-5">
         <div class="container">
-            <p class="m-0 text-center text-white">Copyright &copy; CariKursusYuk 2021</p>
+            <p class="m-0 text-center text-white">Copyright &copy; CariPrivatYuk 2021</p>
         </div>
         <!-- /.container -->
     </footer>

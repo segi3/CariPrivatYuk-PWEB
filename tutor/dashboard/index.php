@@ -52,7 +52,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="/KitaKursusKuy-PWEB/tutor/dashboard">
+                <a class="nav-link" href="/CariPrivatYuk-PWEB/tutor/dashboard">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Home</span></a>
             </li>
@@ -71,7 +71,7 @@
 
             <!-- Nav Item - Privat -->
             <li class="nav-item">
-                <a class="nav-link" href="/KitaKursusKuy-PWEB/tutor/dashboard/privat-request">
+                <a class="nav-link" href="/CariPrivatYuk-PWEB/tutor/dashboard/privat-request">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Permintaan Privat</span></a>
             </li>
@@ -86,10 +86,10 @@
                 <div id="collapsePrivat" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Privat</h6>
-                        <a class="collapse-item" href="/KitaKursusKuy-PWEB/tutor/dashboard/my-privat">Privat Saya</a>
+                        <a class="collapse-item" href="/CariPrivatYuk-PWEB/tutor/dashboard/my-privat">Privat Saya</a>
 
                         <h6 class="collapse-header">Murid</h6>
-                        <a class="collapse-item" href="/KitaKursusKuy-PWEB/tutor/dashboard/my-students">Murid saya</a>
+                        <a class="collapse-item" href="/CariPrivatYuk-PWEB/tutor/dashboard/my-students">Murid saya</a>
                     </div>
                 </div>
             </li>
@@ -97,7 +97,7 @@
 
             <!-- Nav Item - Privat -->
             <li class="nav-item">
-                <a class="nav-link" href="/KitaKursusKuy-PWEB/tutor/dashboard/create-privat">
+                <a class="nav-link" href="/CariPrivatYuk-PWEB/tutor/dashboard/create-privat">
                     <i class="fas fa-fw fa-wrench"></i>
                     <span>Buat Privat</span></a>
             </li>
