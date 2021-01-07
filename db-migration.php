@@ -24,8 +24,8 @@ CREATE TABLE tutors (
     address VARCHAR(255) NOT NULL,
     email VARCHAR(255) NOT NULL,
     password VARCHAR(255) NOT NULL,
-    path_htp VARCHAR(255) NOT NULL,
-    path_foto  VARCHAR(255) NOT NULL
+    path_ktp LONGTEXT NOT NULL,
+    path_foto  LONGTEXT NOT NULL
 );
 ";
 table_creation("tutors",$table_tutors,$con);
