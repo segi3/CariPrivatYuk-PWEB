@@ -1,4 +1,4 @@
-<?php
+<?php session_start();
 
     require_once('../db-connection.php');
 
@@ -17,6 +17,8 @@
         'password'      => $password,
     ];
 
+    $err = [];
+
     if (validateInput($fields, $inputs)) {
         $con = open_connection();
 
@@ -26,24 +28,30 @@
     
         if ($con->query($query_register)) {
             close_connection($con);
-    
-            echo "berhasil input admin baru";
-    
-            ?>
-                <a href="/CariPrivatYuk-PWEB/register/user/index.php">kembali ke register</a>
-            <?php
-    
+
+            $_SESSION['success'] = 'Berhasil register user';
+
             header('Location: http://localhost/CariPrivatYuk-PWEB/login/user/index.php');
+
+            
     
         }else{
-            echo "Gagal input data";
-    
             close_connection($con);
+
+            array_push($err, 'Gagal Input Data');
+            $_SESSION['error'] = $err;
+
+            header('Location: http://localhost/CariPrivatYuk-PWEB/register/user/index.php');
+
+            exit();
         }
     }else {
-        echo "Gagal input data, silahkan cek kembali field menyesuaikan validasi";
+        array_push($err, 'Gagal Validasi Data');
+        $_SESSION['error'] = $err;
 
-        ?><a href="/CariPrivatYuk-PWEB/register/user/index.php">kembali ke register</a><?php
+        header('Location: http://localhost/CariPrivatYuk-PWEB/register/user/index.php');
+
+        exit();
     }
     
 
@@ -55,16 +63,14 @@
 
         // * required
         if (validateRequired($fields)) {
-            echo "Semua field harus diisi";
-            echo "<br>";
+            array_push($err, 'Semua field harus diisi');
             
             $pass = false;
         }
 
         // * duplicate
         if (dupEmail($inputs['email'])) {
-            echo "Field email dan username harus berisi nilai unik";
-            echo "<br>";
+            array_push($err, 'Email sudah dipakai');
             
             $pass = false;
         }
@@ -119,14 +125,12 @@
         $len = strlen($str);
 
         if ($len < $min) {
-            echo "field " . $field . " terlalu pendek, minimal " . $min . " karakter";
-            echo "<br>";
+            array_push($err, "field " . $field . " terlalu pendek, minimal " . $min . " karakter");
             $error = true;
         }
 
         if ($len > $max) {
-            echo "field " . $field . " terlalu panjang, maksimal " . $max . " karakter";
-            echo "<br>";
+            array_push($err, "field " . $field . " terlalu panjang, maksimal " . $max . " karakter");
             $error = true;
         }
 

@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -113,6 +114,7 @@
             <div class="col-lg-4 parent-div">
                 <div class="row child-div">
                     <div class="col-12">
+                        <?php require('../../flash_messages/flash.php'); ?>
                         <h3 id="daftar" style="font-weight: bold;">Daftar Akun</h3>
                         <form method="POST" action="/CariPrivatYuk-PWEB/controller/registerUser.php" enctype="multipart/form-data">
                             <!-- <input type="hidden" name="_token" value="8DvzUWwZHqPd4WWWQagoTWfikvIXqDmIQbKjmqkP"> -->
