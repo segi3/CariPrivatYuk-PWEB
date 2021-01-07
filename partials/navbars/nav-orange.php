@@ -64,9 +64,21 @@ include_once($path);
                             <a href="/CariPrivatYuk-PWEB/user" class="nav-link dropdown-toggle"
                                 id="navbarDropdownBlog"><?php echo($_SESSION['name']); ?><span class="caret"></span></a>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPages">
-                                <a class="dropdown-item" href="/CariPrivatYuk-PWEB/user/my-privat">My Privat</a>
-                                <a class="dropdown-item" href="/CariPrivatYuk-PWEB/user/my-transaction">My Transaction</a>
-                                <a class="dropdown-item" href="/CariPrivatYuk-PWEB/controller/logoutUser.php">Logout</a>
+                                <?php
+                                if ($_SESSION['role'] == 'user'){
+                                    ?>
+                                    <a class="dropdown-item" href="/CariPrivatYuk-PWEB/user/my-privat">My Privat</a>    
+                                    <a class="dropdown-item" href="/CariPrivatYuk-PWEB/user/my-transaction">My Transaction</a>
+                                    <?php
+                                }
+                                if ($_SESSION['role'] == 'tutor'){
+                                    ?>
+                                    <a class="dropdown-item" href="/CariPrivatYuk-PWEB/tutor/dashboard">Dashboard</a>
+                                    <?php
+                                }
+                                ?>
+                                
+                                <a class="dropdown-item" href="/CariPrivatYuk-PWEB/controller/logout.php">Logout</a>
                             </div>
                         </li>
                         <?php
