@@ -1,3 +1,8 @@
+<?php 
+$path = $_SERVER['DOCUMENT_ROOT'];
+$path .= "/CariPrivatYuk-PWEB/db-connection.php";
+include_once($path);
+?>
 <!-- Navigation -->
 <nav id="navorange" class="navbar fixed-top navbar-expand-lg fixed-top">
         <div class="container">
@@ -25,15 +30,25 @@
                             Privat
                         </a>
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
-                            <a class="dropdown-item" href="#">Akademik</a>
-                            <a class="dropdown-item" href="#">Development</a>
-                            <a class="dropdown-item" href="#">Bisnis</a>
-                            <a class="dropdown-item" href="#">Finansial</a>
-                            <a class="dropdown-item" href="#">Teknologi dan Software</a>
-                            <a class="dropdown-item" href="#">Desain</a>
-                            <a class="dropdown-item" href="#">Olahraga</a>
-                            <a class="dropdown-item" href="#">Seni</a>
-                            <a class="dropdown-item" href="#">Musik</a>
+                            <?php
+                                $con=open_connection();
+                                // Get all categories title's and slug's
+                                $query="SELECT title,slug,id From categories ORDER BY id ASC;";
+                                try {
+                                    $categories = $con->query($query);
+                                }catch (Exception $e){
+                                    echo "Gagal mendapatkan data categories : , " . $con->error."<br>";
+                                }
+                                // print_r($categories);
+                                if ($categories->num_rows > 0) {
+                                    // output data of each row
+                                    while($row = $categories->fetch_assoc()) {
+                                      echo "<a class='dropdown-item' href='/privat/kategori/index.php?slug=".$row["slug"]."'>".$row["title"]."</a>";
+                                    }
+
+                                }
+                                close_connection($con);
+                            ?>
                         </div>
                     </li>
                     

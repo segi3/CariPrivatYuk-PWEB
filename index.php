@@ -1,4 +1,9 @@
 <?php session_start(); ?>
+<?php 
+    $path = $_SERVER['DOCUMENT_ROOT'];
+    $path .= "/CariPrivatYuk-PWEB/db-connection.php";
+    include_once($path);
+?>
 <!DOCTYPE html>
 <html lang="en">
 
