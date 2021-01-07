@@ -25,13 +25,13 @@
 
         close_connection($con);
 
-        header('Location:  http://localhost/CariPrivatYuk-PWEB/index.php');
+        header('Location:  http://localhost/CariPrivatYuk-PWEB/');
     }else {
         $err = [];
         $err[0] = 'Gagal Login';
         $_SESSION['error'] = $err;
 
-        header('Location: http://localhost/CariPrivatYuk-PWEB/login/user/index.php');
+        header('Location: http://localhost/CariPrivatYuk-PWEB/login/user/');
         exit();
     }
 ?>
