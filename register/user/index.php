@@ -114,7 +114,7 @@
                 <div class="row child-div">
                     <div class="col-12">
                         <h3 id="daftar" style="font-weight: bold;">Daftar Akun</h3>
-                        <form method="POST" action="#" enctype="multipart/form-data">
+                        <form method="POST" action="/CariPrivatYuk-PWEB/controller/registerUser.php" enctype="multipart/form-data">
                             <!-- <input type="hidden" name="_token" value="8DvzUWwZHqPd4WWWQagoTWfikvIXqDmIQbKjmqkP"> -->
                             <div class="form-group">
                                 <label for="username">Nama Lengkap</label>
