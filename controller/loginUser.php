@@ -19,6 +19,7 @@
 
         $row = $data->fetch_assoc();
 
+        $_SESSION['login'] = true;
         $_SESSION['role'] = 'user';
         $_SESSION['name'] = $row['fullname'];
 
