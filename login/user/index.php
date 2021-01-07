@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -114,13 +115,14 @@
     <div class="container py-5 mt-5" style="height:100vh" id="login-area">
         <div class="row login mt-5 pt-5">
             <div class="col-lg-6">
+                <?php require('../../flash_messages/flash.php'); ?>
                 <img class="card-img" src="../../assets/main_resources/imgs/jumbotron1.jpeg" alt="">
             </div>
             <div class="col-lg-3 parent-div">
                 <div class="row child-div">
                     <div class="col-12">
                         <h3 id="login" style="font-weight: bold;">Login User</h3>
-                        <form>
+                        <form method="POST" action="/CariPrivatYuk-PWEB/controller/loginUser.php">
                             <div class="form-group">
                                 <input type="email" class="form-control" placeholder="Enter Email" name="email"
                                     required>
