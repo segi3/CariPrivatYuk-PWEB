@@ -224,7 +224,7 @@
 
     <div class="container" id="mentor-pop">
 
-        <h1 class="my-5" style="text-align: center,heigth:100vh">Privat Populer</h1>
+        <h1 class="my-5" style="text-align: center;height:100vh">Privat Populer</h1>
 
         <div class="row" id="kurus-pop">
             <div class="col-lg-4 mb-4">
