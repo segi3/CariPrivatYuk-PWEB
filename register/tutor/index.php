@@ -74,11 +74,11 @@
                         </div>
                         <div class="form-group">
                             <label for="BerkasKTP">Berkas KTP</label>
-                            <input type="file" class="form-control-file" id="BerkasKTP" name="BerkasKTP">
+                            <input type="file" class="form-control-file" id="BerkasKTP" name="BerkasKTP" accept="application/pdf">
                         </div>
                         <div class="form-group">
                             <label for="Foto">Foto anda</label>
-                            <input type="file" class="form-control-file" id="Foto" name="foto">
+                            <input type="file" class="form-control-file" id="Foto" name="foto" accept="image/*">
                         </div>
                         <button type="submit" class="btn btn-primary">Daftar</button>
                     </form>

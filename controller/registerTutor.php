@@ -51,6 +51,24 @@
         $fotoSave = $fotoName . '.' . $fotoExt;
         $fotoTarget = $base_path . 'foto_tutor\\' . $fotoName . '.' . $fotoExt;
 
+        // ! ocv!
+        move_uploaded_file($_FILES['foto']['tmp_name'], $fotoTarget);
+        $command = 'python ocv-fp.py ' . $fotoSave;
+        echo($fotoSave);echo  '<br>';
+        $output = shell_exec($command);
+        echo($output);
+        // die();
+        if($output<1) {
+            unlink($fotoTarget);
+            $err = [];
+            array_push($err, 'Tidak ada muka ditemukan');
+            $_SESSION['error'] = $err;
+
+            header('Location: http://localhost/CariPrivatYuk-PWEB/register/tutor/index.php');
+
+            exit();
+        }
+
         $con = open_connection();
 
         $query_register = "
@@ -59,7 +77,6 @@
 
         if ($con->query($query_register)) {
             move_uploaded_file($_FILES['BerkasKTP']['tmp_name'], $ktpTarget);
-            move_uploaded_file($_FILES['foto']['tmp_name'], $fotoTarget);
 
             close_connection($con);
 
