@@ -75,12 +75,14 @@ CREATE TABLE privates (
     id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY NOT NULL,
     title VARCHAR(255) NOT NULL,
     category_id INT UNSIGNED NOT NULL,
-    mentor_id INT UNSIGNED NOT NULL,
+    tutor_id INT UNSIGNED NOT NULL,
     price_per_hour INT NOT NULL,
+    pelaksanaan_online INT NOT NULL,
+    pelaksanaan_offline INT NOT NULL,
     method LONGTEXT NOT NULL,
 
     FOREIGN KEY (category_id) REFERENCES categories(id),
-    FOREIGN KEY (mentor_id) REFERENCES tutors(id)
+    FOREIGN KEY (tutor_id) REFERENCES tutors(id)
 );
 ";
 table_creation("privates",$table_privates,$con);
@@ -143,6 +145,22 @@ table_insertion("insert  into `users`(`fullname`,`address`,`email`,`password`) v
 ('Abdur Rohman','Jombang','abdurrohman9i03@gmail.com','211e5575bbf2cbd2f7312fc4fa3f6f16')",$con);
 table_insertion("insert  into `users`(`fullname`,`address`,`email`,`password`) values 
 ('Zaenal Mahmudi Ismail','Lumajang','maszaenal@gmail.com','d282a5f3cd758fd302601421d9e43948');",$con);
+
+echo "<br>";
+
+table_insertion("insert  into `tutors`(`fullname`,`address`,`email`,`password`,`path_ktp`,`path_foto`) values 
+('Rafi Nizar Abiyyi','Serang','rafiniz@gmail.com','ac4d4b77085a483e6a691fbaa0f9c9b4','ktp-rafiniz@gmail.com.png','foto-rafiniz@gmail.com.png')",$con);
+table_insertion("insert  into `tutors`(`fullname`,`address`,`email`,`password`,`path_ktp`,`path_foto`) values 
+('Excel Deo','Nganjuk','masexcel@gmail.com','9758fcf028936db8866c4b082fb95b45','ktp-masexcel@gmail.com.png','foto-masexcel@gmail.com.jpg')",$con);
+
+echo "<br>";
+table_insertion("insert  into `privates`(`title`,`category_id`,`tutor_id`,`price_per_hour`,`pelaksanaan_online`,`pelaksanaan_offline`,`method`) values 
+('Berenang',7,2,50000,0,1,'Privat dilakukan secara offline di kolam renang yang di setujui.  Tutor mengajarkan langsung praktik berenang mulai dari yang paling dasar di iringi penyampaian teori saat praktik berlangsung.')",$con);
+table_insertion("insert  into `privates`(`title`,`category_id`,`tutor_id`,`price_per_hour`,`pelaksanaan_online`,`pelaksanaan_offline`,`method`) values 
+('PWEB',5,2,100000,1,1,'Pengajaran Materi Dengan PPT dan Live Coding.')",$con);
+
+
+
 close_connection($con);
 
 ?>

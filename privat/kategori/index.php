@@ -87,45 +87,69 @@
     try {
         $data = $con->query($query);
     }catch (Exception $e){
-        echo "Gagal mendapatkan data biodata, " . $con->error;
+        echo "Gagal mendapatkan data privat, " . $con->error;
     }
     $kursus = [];
-    if ($data->num_rows > 0) {
-        while($row = $data->fetch_assoc()){
-            array_push($kursus, $row);
+    if(!isset($data)){
+        if ($data->num_rows > 0) {
+            while($row = $data->fetch_assoc()){
+                array_push($kursus, $row);
+            }
         }
     }
+
+    // Getting Categories
+    $query2 = "
+    SELECT title FROM categories WHERE slug = '".$_GET['slug']."' LIMIT 1;
+    ";
+
+    try {
+        $nama_kategori = $con->query($query2);
+    }catch (Exception $e){
+        echo "Gagal mendapatkan data ketergori, " . $con->error;
+    }
+    $kategori = [];
+    if(isset($nama_kategori)){
+        if ($nama_kategori->num_rows > 0) {
+            while($row = $nama_kategori->fetch_assoc()) {
+                array_push($kategori,$row);
+            }
+        }
+    }
+    close_connection($con);
+    
     ?>
 
     <div class="container" id="mentor-pop">
 
-        <h1 class="my-5" style="text-align: center;">Kategori: <?php echo($kursus[0]['nama_kategori']) ?></h1>
+        <h1 class="my-5" style="text-align: center;">Kategori: <?php echo $kategori[0]['title']; ?></h1>
 
-        <div class="row" id="kurus-pop">
+        <div class="row" id="kurus-pop" style="height:100vh">
             <?php
             foreach($kursus as $k) {
                 ?>
-                <div class="col-lg-4 mb-4">
-                    <div class="card h-100 border-0">
-                        <a href="privat"><img class="card-img-top" src="../../berkas/foto_tutor/<?php echo($k['foto_privat']); ?>"
-                                alt=""></a>
-                        <div class="card-body">
-                            <h5 class="card-title"><?php echo($k['nama_tutor']); ?></h5>
-                            <p class="card-text"><?php echo($k['judul_privat']); ?></p>
-                            <div class="row">
-                                <div class="col-9">
-                                    <span class="price-tag"><?php echo($k['harga_privat']); ?> </span><span class="hr-tag">/jam</span>
-                                </div>
-                                <a href="privat" class="col-2 btn btn-primary beli-btn">Cek</a>
+            <div class="col-lg-4 mb-4">
+                <div class="card h-100 border-0">
+                    <a href="privat"><img class="card-img-top"
+                            src="../../berkas/foto_tutor/<?php echo($k['foto_privat']); ?>" alt=""></a>
+                    <div class="card-body">
+                        <h5 class="card-title"><?php echo($k['nama_tutor']); ?></h5>
+                        <p class="card-text"><?php echo($k['judul_privat']); ?></p>
+                        <div class="row">
+                            <div class="col-9">
+                                <span class="price-tag"><?php echo($k['harga_privat']); ?> </span><span
+                                    class="hr-tag">/jam</span>
                             </div>
+                            <a href="privat" class="col-2 btn btn-primary beli-btn">Cek</a>
                         </div>
                     </div>
                 </div>
+            </div>
 
-                <?php
+            <?php
             }
         ?>
-            <div class="col-lg-4 mb-4">
+            <!-- <div class="col-lg-4 mb-4">
                 <div class="card h-100 border-0">
                     <a href="privat"><img class="card-img-top" src="../../assets/main_resources/kursus/mentor/1.jpg"
                             alt=""></a>
@@ -208,8 +232,8 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-lg-4 mb-4">
+            </div> -->
+            <!-- <div class="col-lg-4 mb-4">
                 <div class="card h-100 border-0">
                     <a href="privat"><img class="card-img-top" src="../../assets/main_resources/kursus/mentor/6.jpg"
                             alt=""></a>
@@ -225,7 +249,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
 

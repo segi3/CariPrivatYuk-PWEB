@@ -3,16 +3,19 @@
 <?php
     include('db-connection.php');
     // Get all categories title's and slug's
-    $query="SELECT title,slug,id From categories ORDER BY id ASC;";
-    $categories = $con->query($query);
-    if ($categories->num_rows > 0) {
-        // output data of each row
-        while($row = $categories->fetch_assoc()) {
-            print_r($row);
-            die();
-            echo "<a class='dropdown-item' href='/privat/kategori/index.php?slug=".$row["slug"]."'>".$row["title"]."</a>";
-        //   echo "id: " . $row["id"]. " - Name: " . $row["firstname"]. " " . $row["lastname"]. "<br>";
-        }
-
-    }
+    $con=open_connection();
+    
+        $uri = $_SERVER['REQUEST_URI'];
+        echo $uri."<br>"; // Outputs: URI
+        
+        $protocol = ((!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off') || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
+        
+        $url = $protocol . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+        echo $url."<br>"; // Outputs: Full URL
+        
+        $query = $_SERVER['QUERY_STRING'];
+        echo $query."<br>"; // Outputs: Query String
+    
+    
+    close_connection($con);
 ?>

@@ -72,103 +72,91 @@
             <div id="content">
 
                 <?php include($path.'/CariPrivatYuk-PWEB/partials/navbars/nav-tutor.php'); ?>
-                <?php
-                    $con=open_connection();
-                    // Get all categories title's and slug's
-                    $query="SELECT title,slug,id From categories ORDER BY id ASC;";
-                    try {
-                        $categories = $con->query($query);
-                    }catch (Exception $e){
-                        echo "Gagal mendapatkan data categories : , " . $con->error."<br>";
-                    }
-                    
-                    close_connection($con);
-                ?>
+
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
 
                     <div class="container d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Buat Privat Baru</h1>
+                        <h1 class="h3 mb-0 text-gray-800">Tambah Subject</h1>
                     </div>
                     <div class="container">
-                        <?php require($path.'/CariPrivatYuk-PWEB/partials/flash_messages/flash.php'); ?>
-                        <form method="POST" action="/CariPrivatYuk-PWEB/controller/createPrivat.php"
-                            enctype="multipart/form-data">
+                        <form>
                             <div class="row">
-                                <div class="col-lg-12 card shadow ">
-                                    <div class="card-body" style="height:80vh">
+                                <div class="col-lg-12 card shadow">
+                                    <div class="card-body">
+
                                         <div class="row">
                                             <div class="col-lg-6">
                                                 <div class="form-group">
                                                     <label for="judulInput">Judul Privat</label>
                                                     <input type="text" class="form-control" id="judulInput"
-                                                        aria-describedby="judulHelp" placeholder="Judul"
-                                                        name="judul_privat" required>
+                                                        aria-describedby="judulHelp" placeholder="Judul" name="judul">
                                                     <small id="judulHelp" class="form-text text-muted">Judul dari
-                                                        privat yang ditawarkan</small>
+                                                        kursus</small>
                                                 </div>
                                             </div>
                                             <div class="col-lg-6">
                                                 <div class="form-group">
                                                     <label for="hargaInput">Harga /jam</label>
                                                     <input type="text" class="form-control" id="hargaInput"
-                                                        aria-describedby="hargaHelp" placeholder="0000.00"
-                                                        name="harga_privat" required>
+                                                        aria-describedby="hargaHelp" placeholder="0000.00" name="harga">
                                                     <small id="hargaHelp" class="form-text text-muted">Hanya Nominal
                                                         dalam rupiah</small>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-6">
-                                                <div class="form-group">
-                                                    <label for="kategoriSelector">Kategori</label>
-                                                    <select class="form-control" id="kategoriSelector"
-                                                        name="kategori_privat">
-                                                        <option value="" selected disabled hidden>Pilih Kategori</option>
-                                                        <?php
-                                                            if (isset($categories)){
-                                                                if ($categories->num_rows > 0) {
-                                                                    // output data of each row
-                                                                    while($row = $categories->fetch_assoc()) {
-                                                                    echo "<option value=".$row["id"].">".$row["title"]."</option>";
-                                                                    }
-                                                                }
-                                                            }
-                                                        ?>
-                                                    </select>
-                                                    <small id="hargaHelp" class="form-text text-muted">Hanya Nominal
-                                                        dalam rupiah</small>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-6">
-                                                <div class="form-group">
-                                                    <label for="descInput">Jenis Pelaksanaan Privat</label>
-                                                    <div class="form-control">
-                                                        <div class="form-check form-check-inline">
-                                                            <input name="checkboxPelaksanaan[offline]" class="form-check-input" type="checkbox" id="inlineCheckbox1" value="1">
-                                                            <label class="form-check-label" for="inlineCheckbox1">Offline</label>
-                                                        </div>
-                                                        <div class="form-check form-check-inline">
-                                                            <input name="checkboxPelaksanaan[online]" class="form-check-input" type="checkbox" id="inlineCheckbox2" value="1">
-                                                            <label class="form-check-label" for="inlineCheckbox2">Online</label>
-                                                        </div>
-                                                    </div>
-
                                                 </div>
                                             </div>
                                             <div class="col-lg-12">
                                                 <div class="form-group">
                                                     <label for="descInput">Metodologi Privat</label>
-                                                    <textarea class="form-control" id="descInput" rows="10"
-                                                        name="metodologi_privat" required></textarea>
-                                                    <small id="metodologiHelp" class="form-text text-muted">Metode pengajaran yang digunakan</small>
+                                                    <textarea class="form-control" id="descInput" rows="3"
+                                                        name="deskripsi"></textarea>
                                                 </div>
                                             </div>
-
                                             <div class="col-lg-12">
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+                                <div class="col-lg-12 card shadow mt-3">
+                                    <div class="card-body">
+                                        <h4>Subjek</h4>
+                                        <a onclick="add_subject()"
+                                            class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">Tambah
+                                            subjek</a>
+                                        <div id="subjContainer">
+                                            <div class="subjek-in mt-3">
+                                                <div class="card">
+                                                    <div class="card-body">
+                                                        <div class="row mt-3">
+                                                            <div class="col-lg-12">
+                                                                <div class="form-group">
+                                                                    <label for="judulsubjek">Judul Subjek</label>
+                                                                    <input type="text" class="form-control"
+                                                                        id="judulsubjek"
+                                                                        aria-describedby="judulSubjek[]"
+                                                                        placeholder="Judul" name="judul">
+
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-lg-12">
+                                                                <div class="form-group">
+                                                                    <label for="descInput">Deskripsi subjek</label>
+                                                                    <textarea class="form-control" id="descInput"
+                                                                        rows="2" name="deskripsiSubjek[]"></textarea>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+
+
+                                    </div>
+                                </div>
+
                             </div>
                             <button type="submit" class="btn btn-primary my-3">Submit</button>
                         </form>

@@ -22,6 +22,7 @@
         $_SESSION['login'] = true;
         $_SESSION['role'] = 'user';
         $_SESSION['name'] = $row['fullname'];
+        $_SESSION['user_id'] = $row['id'];
 
         close_connection($con);
 

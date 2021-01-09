@@ -39,13 +39,13 @@ include_once($path);
                                 }catch (Exception $e){
                                     echo "Gagal mendapatkan data categories : , " . $con->error."<br>";
                                 }
-                                // print_r($categories);
-                                if ($categories->num_rows > 0) {
-                                    // output data of each row
-                                    while($row = $categories->fetch_assoc()) {
-                                      echo "<a class='dropdown-item' href='/privat/kategori/index.php?slug=".$row["slug"]."'>".$row["title"]."</a>";
+                                if (isset($categories)){
+                                    if ($categories->num_rows > 0) {
+                                        // output data of each row
+                                        while($row = $categories->fetch_assoc()) {
+                                          echo "<a class='dropdown-item' href='/CariPrivatYuk-PWEB/privat/kategori?slug=".$row["slug"]."'>".$row["title"]."</a>";
+                                        }
                                     }
-
                                 }
                                 close_connection($con);
                             ?>

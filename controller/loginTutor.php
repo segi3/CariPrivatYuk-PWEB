@@ -22,7 +22,7 @@ if($data->num_rows > 0) {
     $_SESSION['login'] = true;
     $_SESSION['role'] = 'tutor';
     $_SESSION['name'] = $row['fullname'];
-
+    $_SESSION['tutor_id'] = $row['id'];
     close_connection($con);
 
     header('Location:  http://localhost/CariPrivatYuk-PWEB/index.php');
