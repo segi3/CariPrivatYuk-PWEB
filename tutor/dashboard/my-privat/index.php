@@ -54,83 +54,8 @@
     <!-- Page Wrapper -->
     <div id="wrapper">
 
-
-        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-
-            <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
-
-                <div class="sidebar-brand-text mx-3"><span id="jd1">Cari</span><span id="jd2">Privat</span><span
-                        id="jd3">Yuk!</span></div>
-            </a>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider my-0">
-
-            <!-- Nav Item - Dashboard -->
-            <li class="nav-item">
-                <a class="nav-link" href="/CariPrivatYuk-PWEB/tutor/dashboard">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Home</span></a>
-            </li>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-
-
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-
-            <!-- Heading Privat -->
-            <div class="sidebar-heading">
-                Privat
-            </div>
-
-            <!-- Nav Item - Privat -->
-            <li class="nav-item">
-                <a class="nav-link" href="/CariPrivatYuk-PWEB/tutor/dashboard/privat-request">
-                    <i class="fas fa-fw fa-table"></i>
-                    <span>Permintaan Privat</span></a>
-            </li>
-
-            <!-- Nav Item - Privat -->
-            <li class="nav-item active">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePrivat"
-                    aria-expanded="true" aria-controls="collapsePrivat">
-                    <i class="fas fa-fw fa-table"></i>
-                    <span>Privat Saya</span>
-                </a>
-                <div id="collapsePrivat" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Privat</h6>
-                        <a class="collapse-item active" href="/CariPrivatYuk-PWEB/tutor/dashboard/my-privat">Privat
-                            Saya</a>
-
-                        <h6 class="collapse-header">Murid</h6>
-                        <a class="collapse-item" href="/CariPrivatYuk-PWEB/tutor/dashboard/my-students">Murid saya</a>
-                    </div>
-                </div>
-            </li>
-
-
-            <!-- Nav Item - Privat -->
-            <li class="nav-item">
-                <a class="nav-link" href="/CariPrivatYuk-PWEB/tutor/dashboard/create-privat">
-                    <i class="fas fa-fw fa-wrench"></i>
-                    <span>Buat Privat</span></a>
-            </li>
-
-
-
-            <!-- Divider -->
-            <hr class="sidebar-divider d-none d-md-block">
-
-            <!-- Sidebar Toggler (Sidebar) -->
-            <div class="text-center d-none d-md-inline">
-                <button class="rounded-circle border-0" id="sidebarToggle"></button>
-            </div>
-
-        </ul>
+        <!-- Sidebar -->
+        <?php include($path.'/CariPrivatYuk-PWEB/partials/sidebars/side-tutor.php'); ?>
 
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
@@ -142,7 +67,18 @@
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
-
+                    <?php
+                    $con=open_connection();
+                    // Get all private and count their enroll
+                    $query="SELECT id,title,category_id,price_per_hour,pelaksanaan_online,pelaksanaan_offline,method FROM privates;";
+                    try {
+                        $privates = $con->query($query);
+                    }catch (Exception $e){
+                        echo "Gagal mendapatkan data privates : , " . $con->error."<br>";
+                    }
+                   
+                    close_connection($con);
+                ?>
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-0 text-gray-800">Privat Ku</h1>
                         <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">Buat Privat</a>
@@ -152,6 +88,7 @@
                         <div class="col-lg-12 card shadow">
                             <div class="card-body">
                                 <div class="table-responsive">
+                                <?php require($path.'/CariPrivatYuk-PWEB/partials/flash_messages/flash.php'); ?>
                                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                         <thead>
                                             <tr>
@@ -170,24 +107,41 @@
                                             </tr>
                                         </tfoot>
                                         <tbody>
+                                            <?php
+                                                 if (isset($privates)){
+                                                    if ($privates->num_rows > 0) {
+                                                        // output data of each row
+                                                        // print_r($privates);
+                                                        // die();
+                                                        while($row = $privates->fetch_assoc()) {
+                                            ?>
                                             <tr>
-                                                <td>Fotografi Bagi Pemula</td>
-                                                <td>Rp 79.999</td>
-                                                <td>3</td>
-                                                <td><a href="#" class="btn btn-primary btn-sm">Edit</a></td>
+                                                <td><?php echo $row['title']?></td>
+                                                <td><?php echo "Rp. ".$row['price_per_hour']?></td>
+                                                <?php
+                                                        $con=open_connection();
+                                                        // Get count
+                                                        $query="SELECT COUNT(*) as jumlah_murid FROM private_enrolls WHERE private_id=".$row['id'].";";
+                                                        try {
+                                                            $result = $con->query($query);
+                                                        }catch (Exception $e){
+                                                            echo "Gagal mendapatkan data privates : , " . $con->error."<br>";
+                                                        }
+                                                        $count= $result->fetch_assoc();
+                                                        close_connection($con);
+                                                ?>
+                                                <td><?php echo $count['jumlah_murid']?></td>
+                                                <td>
+                                               
+                                                    <a href="#" class="btn btn-primary btn-sm">Edit</a>
+                                                    <a href="<?php echo "/CariPrivatYuk-PWEB/controller/deletePrivat.php?id=".$row['id']?>" class="btn btn-primary btn-sm">Hapus</a>
+                                                </td>
                                             </tr>
-                                            <tr>
-                                                <td>Fotografi Mudah 2020</td>
-                                                <td>Rp 79.999</td>
-                                                <td>4</td>
-                                                <td><a href="#" class="btn btn-primary btn-sm">Edit</a></td>
-                                            </tr>
-                                            <tr>
-                                                <td>Photoshop Bootcamp</td>
-                                                <td>Rp 79.999</td>
-                                                <td>3</td>
-                                                <td><a href="#" class="btn btn-primary btn-sm">Edit</a></td>
-                                            </tr>
+                                            <?php                
+                                                        }
+                                                    }
+                                                }
+                                            ?>
                                         </tbody>
                                     </table>
                                 </div>

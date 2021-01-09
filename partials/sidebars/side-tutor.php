@@ -37,7 +37,7 @@
     </li>
 
     <!-- Nav Item - Privat -->
-    <li class="nav-item <?php if(strcmp($_SERVER['REQUEST_URI'],"/CariPrivatYuk-PWEB/tutor/tutor/dashboard/my-privat/")==0||strcmp($_SERVER['REQUEST_URI'],"/CariPrivatYuk-PWEB/tutor/dashboard/my-students/")==0)echo "active";?>">
+    <li class="nav-item <?php if(strcmp($_SERVER['REQUEST_URI'],"/CariPrivatYuk-PWEB/tutor/dashboard/my-privat/")==0||strcmp($_SERVER['REQUEST_URI'],"/CariPrivatYuk-PWEB/tutor/dashboard/my-students/")==0)echo "active";?>">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePrivat" aria-expanded="true"
             aria-controls="collapsePrivat">
             <i class="fas fa-fw fa-table"></i>
@@ -46,7 +46,7 @@
         <div id="collapsePrivat" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Privat</h6>
-                <a class="collapse-item <?php if(strcmp($_SERVER['REQUEST_URI'],"/CariPrivatYuk-PWEB/tutor/tutor/dashboard/my-privat/")==0)echo "active";?>" href="/CariPrivatYuk-PWEB/tutor/dashboard/my-privat">Privat Saya</a>
+                <a class="collapse-item <?php if(strcmp($_SERVER['REQUEST_URI'],"/CariPrivatYuk-PWEB/tutor/dashboard/my-privat/")==0)echo "active";?>" href="/CariPrivatYuk-PWEB/tutor/dashboard/my-privat">Privat Saya</a>
 
                 <h6 class="collapse-header">Murid</h6>
                 <a class="collapse-item <?php if(strcmp($_SERVER['REQUEST_URI'],"/CariPrivatYuk-PWEB/tutor/dashboard/my-students/")==0)echo "active";?>" href="/CariPrivatYuk-PWEB/tutor/dashboard/my-students">Murid saya</a>

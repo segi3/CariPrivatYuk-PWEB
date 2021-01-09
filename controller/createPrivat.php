@@ -37,11 +37,11 @@
     if (validateInput($fields,$checkboxs, $inputs,$array_error)) {
         $con = open_connection();
 
-        $query_register = "
+        $query_insert = "
             INSERT INTO privates (title, category_id, tutor_id, price_per_hour,method,pelaksanaan_offline,pelaksanaan_online) VALUE ('$title','$category_id','$tutor_id','$price_per_hour','$method',$pelaksanaan_offline,$pelaksanaan_online);
         ";
     
-        if ($con->query($query_register)) {
+        if ($con->query($query_insert)) {
             close_connection($con);
 
             $_SESSION['success'] = 'Berhasil menambah privat';
