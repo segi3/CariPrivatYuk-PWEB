@@ -125,6 +125,7 @@
                                                         name="kategori_privat">
                                                         <option value="" selected disabled hidden>Pilih Kategori</option>
                                                         <?php
+                                                            
                                                             if (isset($categories)){
                                                                 if ($categories->num_rows > 0) {
                                                                     // output data of each row

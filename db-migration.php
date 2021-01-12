@@ -94,6 +94,7 @@ CREATE TABLE private_enrolls (
     private_id INT UNSIGNED NOT NULL,
     total_hours INT NOT NULL,
     hours_done INT NOT NULL,
+    approval_status INT NOT NULL,
 
     FOREIGN KEY (user_id) REFERENCES users(id),
     FOREIGN KEY (private_id) REFERENCES privates(id)

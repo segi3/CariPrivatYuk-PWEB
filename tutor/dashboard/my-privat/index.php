@@ -78,17 +78,31 @@
                     }
                    
                     close_connection($con);
-                ?>
+                    ?>
+                    <?php
+                        $con=open_connection();
+                        // Get all categories title's and slug's
+                        $query="SELECT title,slug,id From categories ORDER BY id ASC;";
+                        try {
+                            $categories = $con->query($query);
+                        }catch (Exception $e){
+                            echo "Gagal mendapatkan data categories : , " . $con->error."<br>";
+                        }
+                        
+                        close_connection($con);
+                    ?>
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-0 text-gray-800">Privat Ku</h1>
-                        <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">Buat Privat</a>
+                        <a href="/CariPrivatYuk-PWEB/tutor/dashboard/create-privat/"
+                            class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">Buat Privat</a>
                     </div>
 
                     <div class="containerrow">
                         <div class="col-lg-12 card shadow">
                             <div class="card-body">
-                                <div class="table-responsive">
                                 <?php require($path.'/CariPrivatYuk-PWEB/partials/flash_messages/flash.php'); ?>
+                                <div class="table-responsive">
+                                    <?php require($path.'/CariPrivatYuk-PWEB/partials/flash_messages/flash.php'); ?>
                                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                         <thead>
                                             <tr>
@@ -110,18 +124,15 @@
                                             <?php
                                                  if (isset($privates)){
                                                     if ($privates->num_rows > 0) {
-                                                        // output data of each row
-                                                        // print_r($privates);
-                                                        // die();
-                                                        while($row = $privates->fetch_assoc()) {
+                                                        while($rowPrivat = $privates->fetch_assoc()) {
                                             ?>
                                             <tr>
-                                                <td><?php echo $row['title']?></td>
-                                                <td><?php echo "Rp. ".$row['price_per_hour']?></td>
+                                                <td><?php echo $rowPrivat['title']?></td>
+                                                <td><?php echo "Rp. ".$rowPrivat['price_per_hour']?></td>
                                                 <?php
                                                         $con=open_connection();
                                                         // Get count
-                                                        $query="SELECT COUNT(*) as jumlah_murid FROM private_enrolls WHERE private_id=".$row['id'].";";
+                                                        $query="SELECT COUNT(*) as jumlah_murid FROM private_enrolls WHERE private_id=".$rowPrivat['id'].";";
                                                         try {
                                                             $result = $con->query($query);
                                                         }catch (Exception $e){
@@ -132,9 +143,132 @@
                                                 ?>
                                                 <td><?php echo $count['jumlah_murid']?></td>
                                                 <td>
-                                               
-                                                    <a href="#" class="btn btn-primary btn-sm">Edit</a>
-                                                    <a href="<?php echo "/CariPrivatYuk-PWEB/controller/deletePrivat.php?id=".$row['id']?>" class="btn btn-primary btn-sm">Hapus</a>
+
+                                                    <a href="#" class="btn btn-primary btn-sm" data-toggle="modal"
+                                                        data-target="#jadwalModal-<?php echo $rowPrivat['id']?>">Edit</a>
+                                                    <a href="<?php echo "/CariPrivatYuk-PWEB/controller/deletePrivat.php?id=".$rowPrivat['id']?>"
+                                                        class="btn btn-primary btn-sm">Hapus</a>
+                                                    <!-- Modal -->
+                                                    <div class="modal fade"
+                                                        id="<?php echo "jadwalModal-".$rowPrivat['id'];?>" tabindex="-1"
+                                                        role="dialog" aria-labelledby="exampleModalLabel"
+                                                        aria-hidden="true">
+                                                        <div class="modal-dialog" role="document">
+                                                            <form method="POST" action="/CariPrivatYuk-PWEB/controller/updatePrivat.php">
+                                                                <div class="modal-content">
+                                                                    <div class="modal-header">
+                                                                        <h5 class="modal-title" id="exampleModalLabel">
+                                                                            Edit Privat</h5>
+                                                                        <button type="button" class="close"
+                                                                            data-dismiss="modal" aria-label="Close">
+                                                                            <span aria-hidden="true">&times;</span>
+                                                                        </button>
+                                                                    </div>
+                                                                    <div class="modal-body">
+                                                                        <div class="form-group">
+                                                                            <label for="judulInput">Judul Privat</label>
+                                                                            <input type="text" class="form-control"
+                                                                                id="judulInput"
+                                                                                aria-describedby="judulHelp"
+                                                                                placeholder="Judul" name="judul_privat"
+                                                                                required value="<?php echo $rowPrivat['title']?>">
+                                                                            <small id="judulHelp"
+                                                                                class="form-text text-muted">Judul
+                                                                                dari
+                                                                                privat yang ditawarkan</small>
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <label for="hargaInput">Harga /jam</label>
+                                                                            <input type="hidden" class="form-control" name="id_privat" value="<?php echo $rowPrivat['id']?>" required>
+                                                                            <input type="text" class="form-control"
+                                                                                id="hargaInput"
+                                                                                aria-describedby="hargaHelp"
+                                                                                placeholder="0000.00" value="<?php echo $rowPrivat['price_per_hour']?>"
+                                                                                name="harga_privat" required>
+                                                                            <small id="hargaHelp"
+                                                                                class="form-text text-muted">Hanya
+                                                                                Nominal
+                                                                                dalam rupiah</small>
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <label
+                                                                                for="kategoriSelector">Kategori</label>
+                                                                            <select class="form-control"
+                                                                                id="kategoriSelector"
+                                                                                name="kategori_privat">
+                                                                                <option value="" selected disabled
+                                                                                    hidden>Pilih Kategori
+                                                                                </option>
+                                                                                <?php
+                                                                                    if (isset($categories)){
+                                                                                        if ($categories->num_rows > 0) {
+                                                                                            // output data of each row
+                                                                                            while($row = $categories->fetch_assoc()) {
+                                                                                                echo "<option "; 
+                                                                                                if($row["id"]==$rowPrivat["category_id"])echo "selected"; else echo"";
+                                                                                                echo " value=".$row["id"]." ".">".$row["title"]."</option>";
+                                                                                            }
+                                                                                        }
+                                                                                    }
+                                                                                ?>
+                                                                            </select>
+                                                                            <small id="hargaHelp"
+                                                                                class="form-text text-muted">Hanya
+                                                                                Nominal
+                                                                                dalam rupiah</small>
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <label for="descInput">Jenis Pelaksanaan
+                                                                                Privat</label>
+                                                                            <div class="form-control">
+                                                                                <div
+                                                                                    class="form-check form-check-inline">
+                                                                                    <input <?php if($rowPrivat['pelaksanaan_offline'])echo "checked"; ?>
+                                                                                        name="checkboxPelaksanaan[offline]"
+                                                                                        class="form-check-input"
+                                                                                        type="checkbox"
+                                                                                        id="inlineCheckbox1" value="1">
+                                                                                    <label class="form-check-label"
+                                                                                        for="inlineCheckbox1">Offline</label>
+                                                                                </div>
+                                                                                <div
+                                                                                    class="form-check form-check-inline">
+                                                                                    <input <?php if($rowPrivat['pelaksanaan_online'])echo "checked"; ?>
+                                                                                        name="checkboxPelaksanaan[online]"
+                                                                                        class="form-check-input"
+                                                                                        type="checkbox"
+                                                                                        id="inlineCheckbox2" value="1">
+                                                                                    <label class="form-check-label"
+                                                                                        for="inlineCheckbox2">Online</label>
+                                                                                </div>
+                                                                            </div>
+
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <label for="descInput">Metodologi
+                                                                                Privat</label>
+                                                                            <textarea class="form-control"
+                                                                                id="descInput" rows="10"
+                                                                                name="metodologi_privat"
+                                                                                required><?php echo $rowPrivat['method']; ?></textarea>
+                                                                            <small id="metodologiHelp"
+                                                                                class="form-text text-muted">Metode
+                                                                                pengajaran yang digunakan</small>
+                                                                        </div>
+
+                                                                    </div>
+                                                                    <div class="modal-footer">
+                                                                        <button type="button" class="btn btn-secondary"
+                                                                            data-dismiss="modal">Close</button>
+                                                                        <button type="submit"
+                                                                            class="btn btn-primary">Save
+                                                                            changes</button>
+                                                                    </div>
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                    <!-- End of Modal -->
                                                 </td>
                                             </tr>
                                             <?php                
@@ -144,6 +278,7 @@
                                             ?>
                                         </tbody>
                                     </table>
+
                                 </div>
                             </div>
                         </div>

@@ -1,4 +1,12 @@
-<?php session_start(); ?>
+<?php session_start(); ?>]
+<?php 
+    $path = $_SERVER['DOCUMENT_ROOT'];
+    $dbcon = $path."/CariPrivatYuk-PWEB/db-connection.php";
+    include($dbcon);
+    
+    $privat_image = "/CariPrivatYuk-PWEB/berkas/foto_tutor/";
+    
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -80,9 +88,10 @@
     $query = "
         SELECT C.title as nama_kategori, P.title as judul_privat, T.fullname as nama_tutor, P.price_per_hour as harga_privat, T.path_foto as foto_privat FROM privates P
         INNER JOIN categories C ON C.id = P.category_id
-        INNER JOIN tutors T ON T.id = P.mentor_id
+        INNER JOIN tutors T ON T.id = P.tutor_id
         WHERE C.slug='".$slug."';
     ";
+    // print_r($query);
 
     try {
         $data = $con->query($query);
@@ -90,13 +99,14 @@
         echo "Gagal mendapatkan data privat, " . $con->error;
     }
     $kursus = [];
-    if(!isset($data)){
+    if(isset($data)){
         if ($data->num_rows > 0) {
             while($row = $data->fetch_assoc()){
                 array_push($kursus, $row);
             }
         }
     }
+    
 
     // Getting Categories
     $query2 = "
@@ -111,8 +121,8 @@
     $kategori = [];
     if(isset($nama_kategori)){
         if ($nama_kategori->num_rows > 0) {
-            while($row = $nama_kategori->fetch_assoc()) {
-                array_push($kategori,$row);
+            while($row_kategory = $nama_kategori->fetch_assoc()) {
+                array_push($kategori,$row_kategory);
             }
         }
     }
@@ -126,12 +136,13 @@
 
         <div class="row" id="kurus-pop" style="height:100vh">
             <?php
+            
             foreach($kursus as $k) {
                 ?>
             <div class="col-lg-4 mb-4">
                 <div class="card h-100 border-0">
                     <a href="privat"><img class="card-img-top"
-                            src="../../berkas/foto_tutor/<?php echo($k['foto_privat']); ?>" alt=""></a>
+                            src="<?php echo($privat_image.$k['foto_privat']); ?>" alt="<?php echo($privat_image.$k['foto_privat']); ?>"></a>
                     <div class="card-body">
                         <h5 class="card-title"><?php echo($k['nama_tutor']); ?></h5>
                         <p class="card-text"><?php echo($k['judul_privat']); ?></p>
