@@ -28,6 +28,10 @@
     <style>
         .kursus-head {
             margin-top: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
         }
 
         .parent-div {}
@@ -37,20 +41,45 @@
         }
 
         #thumbPrivat {
-            height: 300px !important;
-            width: 300px !important;
+            height: 200px !important;
+            width: 200px !important;
+            margin-top: 100px;
             border-radius: 150px;
         }
         .dropdown:hover .dropdown-menu {
             display: block !important;
         }
-    </style>
 
+        .kotak{
+            margin-left: 5%;
+            margin-right: 5%;
+            background-image: url(../assets/main_resources/imgs/bgjunc.png);
+            /* Full height */
+            height: 100%;
+
+            /* Center and scale the image nicely */
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            
+        }
+        .judulprivat{
+            font-weight: bold;
+            color: white;
+        }
+        .judulprivat2{
+            color: white;
+        }
+
+        .judulprivat3{
+            font-size: 20 px;
+        }
+
+    </style>
 
 </head>
 
 <body>
-
     <!-- Navigation -->
     <nav id="navorange" class="navbar fixed-top navbar-expand-lg fixed-top">
         <div class="container">
@@ -108,49 +137,33 @@
         </div>
     </nav>
 
-
-
-
-
-    <div class="container pb-5" style="margin-top: 100px;">
-        <div class="row kursus-head">
-            <div class="col-lg-4">
+    <div class="kotak">
+        <div class="col kursus-head">
+            <div>
                 <img class="card-img-top" src="https://place-hold.it/286x286/F78104" alt="" id="thumbPrivat">
             </div>
-            <div class="col-lg-5 parent-div">
+            <div class="col kursus-head">
                 <div class="row child-div">
                     <div class="col-12">
-                        <h3 id="nama-kursus">Judul-Privat</h3>
-                        <h3 id="nama-kursus" style="color: #249EA0 !important;">Nama-Tutor</h3>
+                        <h3 class="judulprivat">Judul - Privat</h3>
+                        <h3 class="judulprivat2" style="margin-bottom: 25px;">Nama - Tutor</h3>
                     </div>
                 </div>
             </div>
 
-            <div class="col-lg-3 parent-div">
-
-                <div class="row child-div d-flex align-content-center">
-                    <div class="col-12">
-                        <h5 style="display: inline;">Rp 79.999</h5><span> /jam</span>
+            <div class="parent-div">
+                <div class="row child-div d-flex">
+                    <div>
+                        <h5 style="color: white; margin-bottom: 75px">Rp 79.999/jam</h5>
                     </div>
-                    <div class="col-12 mt-3">
-                        <form action="">
-                            <div class="form-check">
-                                <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                                <label class="form-check-label" for="exampleCheck1">Daring</label>
-                            </div>
-                            <div class="form-check mb-2">
-                                <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                                <label class="form-check-label" for="exampleCheck1">Luring</label>
-                            </div>
-                            <a href="" type="submit" class="btn btn-primary" style="width:100%;">Ajukan permintaan</a>
-                        </form>
-                    </div>
+                    
                 </div>
 
             </div>
 
         </div>
     </div>
+
     <div class="pt-5" style="background-color: #F3F3F3; height: 1000px;">
         <div class="container">
             <div class="row">
@@ -198,24 +211,41 @@
                 <div class="col-lg-12 mt-5">
                     <div class="card border-0">
                         <div class="card-body">
-                            <h3 class="kursus-body-header">
-                                Ulasan untuk judul-privat
-                            </h3>
+                            <h5 class="kursus-body-header">
+                                Ulasan untuk judul - privat
+                            </h5>
                             <div class="row mt-5">
                                 <div class="col-12 row">
-                                    <div class="col-4">
-                                        <h6 class="kursus-body-header">Pengguna 1</h6>
-                                    </div>
-                                    <div class="col-8">
-                                        <p>
-                                            Mengajar dengan cara yang mudah dipahami dan sabar
-                                        </p>
+                                    <div class="col-12">
+                                        <p><span style="color: blue; font-weight: bold;">Pengguna 1 </span>Mengajar dengan cara yang mudah dipahami dan sabar</p>
+                                        <p><span style="color: blue; font-weight: bold;">Pengguna 2 dari syurga </span>Mantap betulll</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-
+                    <div class="row ">
+                        <div class="col-12 mt-5" >
+                            <div class="card border-0">
+                                <div class="card-body">
+                                    <h5 class="kursus-body-header" style="margin-bottom:20px">
+                                        Pilih metode belajar
+                                    </h5>
+                                        <form action="">
+                                        <div class="form-check">
+                                            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                                            <label class="form-check-label judulprivat3" for="exampleCheck1">Daring</label>
+                                        </div>
+                                        <div class="form-check mb-2">
+                                            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                                            <label class="form-check-label judulprivat3" style="margin-bottom:25px" for="exampleCheck1">Luring</label>
+                                        </div>
+                                        <a href="" type="submit" class="btn btn-primary" style="width:100%; margin-bottom:10px">Ajukan permintaan</a>
+                                        </form>
+                                    </div>
+                        </div>
+                    </div>
+                </div>
                 </div>
             </div>
         </div>
