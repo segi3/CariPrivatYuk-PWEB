@@ -36,17 +36,18 @@
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
 
-
+        <script src="https://use.fontawesome.com/5f8983e405.js"></script>
     <link href="../../../assets/dashboard_resources/css/sb-admin-2.min.css" rel="stylesheet">
 
     <link href="../../../assets/dashboard_resources/css/style.css" rel="stylesheet">
 
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"
-        integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+    integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
 
-
-
-
+    <!-- Bootstrap Date-Picker Plugin -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment.min.js"></script>
 </head>
 
 <body id="page-top">
@@ -141,26 +142,16 @@
                     </div>
                     <?php
                         $con=open_connection();
-                        
-                        // $query_murid="select E.total_hours as total_waktu,E.tutor_id, E.id as id_enroll,
-                        //               E.hours_done as progress_waktu, E.pelakasanaan_offline as offline,
-                        //               E.pelaksanaan_online as online, U.fullname as nama_user
-                        //               from private_enrolls
-                        //               INNER JOIN privates P ON P.id=E.private_id
-                        //               INNER JOIN user U ON U.id = E.user_id 
-                        //               where E.tutor_id=".$_SESSION['tutor_id'].";";
-                        // $res_murid= $con->query($query);
-
                         $query2 = "
                                 SELECT P.tutor_id AS id_tutor, E.total_hours AS total_jam,E.hours_done AS progress_jam, E.approval_status AS persetujuan,
                                         U.fullname AS nama_user, E.completion_status as complete,
-                                        P.title AS judul_privat
+                                        P.title AS judul_privat, E.id as id_enroll, E.pelaksanaan_online as online,
+                                        E.pelaksanaan_offline as offline
                                 FROM private_enrolls E
                                 INNER JOIN users U ON U.id=E.user_id
                                 INNER JOIN privates P ON P.id=E.private_id
                                 WHERE E.approval_status=1 AND E.payment_status=1 AND E.completion_status=2 AND P.tutor_id=".$_SESSION['tutor_id'].";
                                 ";
-                        
                         try {
                             $data = $con->query($query2);
                         }catch (Exception $e){
@@ -194,38 +185,44 @@
                                                         while($murid=$data->fetch_assoc()){
                                                 ?>
                                                     <option value="<?php echo $murid['id_enroll']?>" > 
-                                                        <?php echo $murid['nama_user']." ".$murid['judul_privat']?>
+                                                        <?php echo $murid['nama_user']." - ".$murid['judul_privat']."-"?>
+                                                        <?php if($murid['online']) echo " Online "?>
+                                                        <?php if($murid['offline']) echo " Offline "?>
                                                     </option>
                                                 <?php   
                                                         }
                                                     }
-                                                ?>
-                                                 
-                                                
+                                                ?> 
                                             </select>
+                                            <small>Online dan Offline menunjukan kesanggupan dari murid</small>
                                         </div>
                                        
                                         <div class="row">
-                                            <div class="col-lg-6">
+                                            <div class="col-lg-4">
                                                 <div class="form-group">
-                                                    <label for="exampleInputEmail1">Waktu</label>
-                                                    <input type="email" class="form-control" id="exampleInputEmail1"
-                                                        aria-describedby="emailHelp">
+                                                    <label for="inputHari">Hari</label>
+                                                    <input name="jadwal_hari" id="inputHari" type="text" class="form-control single-input form-control datepicker" aria-describedby="datepickerHelp">
                                                 </div>
                                             </div>
-                                            <div class="col-lg-6">
+                                            <div class="col-lg-4">
+                                                <div class="form-group">
+                                                    <label for="exampleInputEmail1">Jam</label>
+                                                    <input class="form-control" type="time" name="jadwal_jam" id="inputJam">
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="col-lg-4">
                                                 <div class="form-group">
                                                     <label for="exampleInputEmail5">Durasi (jam)</label>
-                                                    <input type="email" class="form-control" id="exampleInputEmail5"
-                                                        aria-describedby="emailHelp" placeholder="durasi">
+                                                    <input type="text" class="form-control" id="inputJam"placeholder="Durasi">
                                                 </div>
                                             </div>
                                             <div class="col-lg-12">
                                                 <div class="form-group">
-                                                    <label for="exampleInputEmail6">Lokasi</label>
-                                                    <input type="email" class="form-control" id="exampleInputEmail6"
-                                                        aria-describedby="emailHelp" placeholder="lokasi">
-                                                    <small id="emailHelp" class="form-text text-muted">Online hanya
+                                                    <label for="inputLokasi">Lokasi</label>
+                                                    <input type="text" class="form-control" id="inputLokasi"
+                                                        aria-describedby="emailHelp" placeholder="Lokasi Pertemuan/Link Meeting">
+                                                    <small class="form-text text-muted">Online hanya
                                                         tulis link meeting</small>
                                                 </div>
                                             </div>
@@ -235,7 +232,7 @@
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary"
                                             data-dismiss="modal">Close</button>
-                                        <button type="button" class="btn btn-primary">Save changes</button>
+                                        <button type="submit" class="btn btn-primary">Save changes</button>
                                     </div>
                                 </div>
                             </form>
@@ -341,8 +338,16 @@
     <script src="../../../assets/dashboard_resources/js/demo/chart-area-demo.js"></script>
     <script src="../../../assets/dashboard_resources/js/demo/chart-pie-demo.js"></script>
 
-
-
 </body>
 
 </html>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+<script type="text/javascript">
+    $(function(){
+     $(".datepicker").datepicker({
+         format: 'dd-mm-yyyy',
+         autoclose: true,
+         todayHighlight: true,
+     });
+    });
+</script>
