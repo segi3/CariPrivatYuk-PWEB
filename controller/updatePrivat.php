@@ -1,8 +1,18 @@
 <?php session_start();
 
+    $head_redirect = "/CariPrivatYuk-PWEB/login/tutor";
+    if(isset($_SESSION['role'])){
+        if(strcmp($_SESSION['role'],'tutor')!=0){
+            
+            header($head_redirect);
+        }
+    }
+    else{
+        header("location: ".$head_redirect);
+    }
+
     require_once('../db-connection.php');
 
-    
     $method = $_['metodologi_privat'];
     $jenis= $_POST['checkboxPelaksanaan'];
     $pelaksanaan_online=0;

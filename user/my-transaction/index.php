@@ -1,4 +1,15 @@
-<?php session_start(); ?>
+<?php session_start();
+$head_redirect = "/CariPrivatYuk-PWEB/login/tutor";
+if(isset($_SESSION['role'])){
+    if(strcmp($_SESSION['role'],'user')!=0){
+        
+        header($head_redirect);
+    }
+}
+else{
+    header("location: ".$head_redirect);
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
