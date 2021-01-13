@@ -297,7 +297,7 @@
                 <h1 class="">Tunggu apalagi? Temukan tutor favoritmu!</h1>
                 <p>Daftar akun sekarang</p>
                 <div class="d-flex justify-content-center">
-                    <a href="/user-register" class="btn btn-primary ">Daftar Akun</a>
+                    <a href="/CariPrivatYuk-PWEB/login/user" class="btn btn-primary ">Login Akun</a>
                 </div>
             </div>
 
@@ -307,7 +307,7 @@
                 <h1 class="">Berbagi ilmu dengan semua orang!</h1>
                 <p>Daftar menjadi mentor</p>
                 <div class="d-flex justify-content-center">
-                    <a href="/mentor-register" class="btn btn-primary ">Daftar Tutor</a>
+                    <a href="/CariPrivatYuk-PWEB/login/tutor" class="btn btn-primary ">Login Tutor</a>
                 </div>
             </div>
 
