@@ -1,4 +1,4 @@
-<?php session_start(); ?>]
+<?php session_start(); ?>
 <?php 
     $path = $_SERVER['DOCUMENT_ROOT'];
     $dbcon = $path."/CariPrivatYuk-PWEB/db-connection.php";

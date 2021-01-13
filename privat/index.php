@@ -53,6 +53,7 @@
             width: 200px !important;
             margin-top: 100px;
             border-radius: 150px;
+            object-fit: cover;
         }
 
         .dropdown:hover .dropdown-menu {
