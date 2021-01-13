@@ -123,7 +123,7 @@
                                                         if(!is_null($raw_data["bukti_bayar"])){
                                                 ?>
                                                     <a href="<?php echo "/CariPrivatYuk-PWEB/controller/updateVerifyEnrolls.php?id=".$raw_data["id_enroll"];?>" class="btn btn-success btn-sm">Verify</a>
-                                                    <a href="<?php echo "/CariPrivatYuk-PWEB/berkas/bukti_bayar/".$raw_data["bukti_bayar"];?>" class="btn btn-info btn-sm">Bukti Pembayaran</a>
+                                                    <a href="<?php echo "/CariPrivatYuk-PWEB/berkas/bukti_pembayaran/".$raw_data["bukti_bayar"];?>" class="btn btn-info btn-sm">Bukti Pembayaran</a>
                                                 <?php   }else{ echo "Menunggu Pembayaran";}
                                                     }else{?>
                                                     <a href="<?php echo "/CariPrivatYuk-PWEB/controller/updateAproveEnrolls.php?id=".$raw_data["id_enroll"];?>" class="btn btn-success btn-sm">Terima</a>

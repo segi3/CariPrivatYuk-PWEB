@@ -163,38 +163,38 @@ table_insertion("insert into categories (title,slug) VALUES ('Desain', 'desain')
 table_insertion("insert into categories (title,slug) VALUES ('Olahraga', 'olahraga');",$con);
 table_insertion("insert into categories (title,slug) VALUES ('Seni', 'seni');",$con);
 table_insertion("insert into categories (title,slug) VALUES ('Musik', 'musik');",$con);
-echo "<br>";
+// echo "<br>";
 
-table_insertion("insert  into `users`(`fullname`,`address`,`email`,`password`) values 
-('Abdur Rohman','Jombang','abdurrohman9i03@gmail.com','211e5575bbf2cbd2f7312fc4fa3f6f16')",$con);
-table_insertion("insert  into `users`(`fullname`,`address`,`email`,`password`) values 
-('Zaenal Mahmudi Ismail','Lumajang','maszaenal@gmail.com','d282a5f3cd758fd302601421d9e43948');",$con);
+// table_insertion("insert  into `users`(`fullname`,`address`,`email`,`password`) values 
+// ('Abdur Rohman','Jombang','abdurrohman9i03@gmail.com','211e5575bbf2cbd2f7312fc4fa3f6f16')",$con);
+// table_insertion("insert  into `users`(`fullname`,`address`,`email`,`password`) values 
+// ('Zaenal Mahmudi Ismail','Lumajang','maszaenal@gmail.com','d282a5f3cd758fd302601421d9e43948');",$con);
 
-echo "<br>";
+// echo "<br>";
 
-table_insertion("insert  into `tutors`(`fullname`,`address`,`email`,`password`,`path_ktp`,`path_foto`) values 
-('Rafi Nizar Abiyyi','Serang','rafiniz@gmail.com','ac4d4b77085a483e6a691fbaa0f9c9b4','ktp-rafiniz@gmail.com.png','foto-rafiniz@gmail.com.png')",$con);
-table_insertion("insert  into `tutors`(`fullname`,`address`,`email`,`password`,`path_ktp`,`path_foto`) values 
-('Excel Deo','Nganjuk','masexcel@gmail.com','9758fcf028936db8866c4b082fb95b45','ktp-masexcel@gmail.com.png','foto-masexcel@gmail.com.jpg')",$con);
+// table_insertion("insert  into `tutors`(`fullname`,`address`,`email`,`password`,`path_ktp`,`path_foto`) values 
+// ('Rafi Nizar Abiyyi','Serang','rafiniz@gmail.com','ac4d4b77085a483e6a691fbaa0f9c9b4','ktp-rafiniz@gmail.com.png','foto-rafiniz@gmail.com.png')",$con);
+// table_insertion("insert  into `tutors`(`fullname`,`address`,`email`,`password`,`path_ktp`,`path_foto`) values 
+// ('Excel Deo','Nganjuk','masexcel@gmail.com','9758fcf028936db8866c4b082fb95b45','ktp-masexcel@gmail.com.png','foto-masexcel@gmail.com.jpg')",$con);
 
-echo "<br>";
-table_insertion("insert  into `privates`(`title`,`category_id`,`tutor_id`,`price_per_hour`,`pelaksanaan_online`,`pelaksanaan_offline`,`method`) values 
-('Berenang',7,1,50000,0,1,'Privat dilakukan secara offline di kolam renang yang di setujui.  Tutor mengajarkan langsung praktik berenang mulai dari yang paling dasar di iringi penyampaian teori saat praktik berlangsung.')",$con);
-table_insertion("insert  into `privates`(`title`,`category_id`,`tutor_id`,`price_per_hour`,`pelaksanaan_online`,`pelaksanaan_offline`,`method`) values 
-('PWEB',5,2,100000,1,1,'Pengajaran Materi Dengan PPT dan Live Coding.')",$con);
-table_insertion("insert  into `privates`(`title`,`category_id`,`tutor_id`,`price_per_hour`,`pelaksanaan_online`,`pelaksanaan_offline`,`method`) values 
-('JSS',5,2,100000,1,1,'Belajar JSS dari awal.')",$con);
-table_insertion("insert  into `privates`(`title`,`category_id`,`tutor_id`,`price_per_hour`,`pelaksanaan_online`,`pelaksanaan_offline`,`method`) values 
-('OJAX CRUD',5,2,30000,1,0,'Metodologi Live Coding dengan bimbingan tutor.')",$con);
-table_insertion("insert  into `privates`(`title`,`category_id`,`tutor_id`,`price_per_hour`,`pelaksanaan_online`,`pelaksanaan_offline`,`method`) values 
-('React Basic',5,2,50000,1,1,'Belajar React')",$con);
+// echo "<br>";
+// table_insertion("insert  into `privates`(`title`,`category_id`,`tutor_id`,`price_per_hour`,`pelaksanaan_online`,`pelaksanaan_offline`,`method`) values 
+// ('Berenang',7,1,50000,0,1,'Privat dilakukan secara offline di kolam renang yang di setujui.  Tutor mengajarkan langsung praktik berenang mulai dari yang paling dasar di iringi penyampaian teori saat praktik berlangsung.')",$con);
+// table_insertion("insert  into `privates`(`title`,`category_id`,`tutor_id`,`price_per_hour`,`pelaksanaan_online`,`pelaksanaan_offline`,`method`) values 
+// ('PWEB',5,2,100000,1,1,'Pengajaran Materi Dengan PPT dan Live Coding.')",$con);
+// table_insertion("insert  into `privates`(`title`,`category_id`,`tutor_id`,`price_per_hour`,`pelaksanaan_online`,`pelaksanaan_offline`,`method`) values 
+// ('JSS',5,2,100000,1,1,'Belajar JSS dari awal.')",$con);
+// table_insertion("insert  into `privates`(`title`,`category_id`,`tutor_id`,`price_per_hour`,`pelaksanaan_online`,`pelaksanaan_offline`,`method`) values 
+// ('OJAX CRUD',5,2,30000,1,0,'Metodologi Live Coding dengan bimbingan tutor.')",$con);
+// table_insertion("insert  into `privates`(`title`,`category_id`,`tutor_id`,`price_per_hour`,`pelaksanaan_online`,`pelaksanaan_offline`,`method`) values 
+// ('React Basic',5,2,50000,1,1,'Belajar React')",$con);
 
-echo "<br>";
+// echo "<br>";
 
-table_insertion("insert  into `private_enrolls`(`user_id`,`private_id`,`total_hours`,`hours_done`,`approval_status`,`payment_status`,`completion_status`,`pelaksanaan_online`,`pelaksanaan_offline`,`bukti_pembayaran`) values 
-(2,3,10,0,2,2,2,1,0,NULL),
-(2,2,12,0,2,2,2,1,0,NULL),
-(2,1,24,0,2,2,2,0,1,NULL);",$con);
+// table_insertion("insert  into `private_enrolls`(`user_id`,`private_id`,`total_hours`,`hours_done`,`approval_status`,`payment_status`,`completion_status`,`pelaksanaan_online`,`pelaksanaan_offline`,`bukti_pembayaran`) values 
+// (2,3,10,0,2,2,2,1,0,NULL),
+// (2,2,12,0,2,2,2,1,0,NULL),
+// (2,1,24,0,2,2,2,0,1,NULL);",$con);
 
 
 close_connection($con);

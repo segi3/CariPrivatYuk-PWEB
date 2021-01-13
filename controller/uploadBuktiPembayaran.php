@@ -20,7 +20,7 @@
     $base_path = "..\\berkas\\bukti_pembayaran\\";
 
     $buktiInfo = pathinfo($_FILES['bukti_bayar']['name']);
-    $buktiName = $_SESSION['name'] . '-' . $tanggal . '-' . $judul;
+    $buktiName = str_replace(" ", "-", $_SESSION['name'] . '-' . $tanggal . '-' . $judul);
     $buktiExt = $buktiInfo['extension'];
     $buktiSave = $buktiName . '.' . $buktiExt;
     $buktiTarget = $base_path . $buktiName . '.' . $buktiExt;

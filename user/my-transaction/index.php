@@ -59,7 +59,7 @@ else{
         SELECT PE.id as id_enroll, PE.bukti_pembayaran, P.title, P.price_per_hour, PE.total_hours, PE.tanggal_pembelian, PE.payment_status FROM private_enrolls PE
         INNER JOIN users U ON U.id = PE.user_id
         INNER JOIN privates P ON P.id = PE.private_id
-        WHERE PE.approval_status = 2 AND U.id = ".$_SESSION['user_id']."
+        WHERE PE.approval_status = 1 AND U.id = ".$_SESSION['user_id']."
     ";
     try {
         $data = $con->query($query);
@@ -103,7 +103,7 @@ else{
                                     // 2 belum dibayar
                                     // 1 udah dibayar
                                     foreach($transaksi as $tr) {
-                                        ?><td><?php echo($tr['title']); ?></td><?php
+                                        ?><tr><td><?php echo($tr['title']); ?></td><?php
                                         ?><td><?php echo($tr['tanggal_pembelian']); ?></td><?php
                                         ?><td><?php echo($tr['total_hours']); ?></td><?php
                                         ?><td><?php echo($tr['price_per_hour']); ?></td><?php
@@ -148,7 +148,7 @@ else{
                                                 ?>
                                                 
                                                 
-                                            </td>
+                                            </td></tr>
                                         <?php
                                     }
                                     ?>
