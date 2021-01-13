@@ -1,6 +1,6 @@
 <?php session_start();
 
-    $head_redirect = "/CariPrivatYuk-PWEB/login/tutor";
+    $head_redirect = "/CariPrivatYuk-PWEB/login/user";
     if(isset($_SESSION['role'])){
         if(strcmp($_SESSION['role'],'user')!=0){
             

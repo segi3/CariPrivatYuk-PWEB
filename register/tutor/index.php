@@ -1,4 +1,11 @@
-<?php session_start(); ?>
+<?php session_start();
+
+if (isset($_SESSION['login'])){
+    if ($_SESSION['login'] == true){
+        header('Location: http://localhost/CariPrivatYuk-PWEB/');
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
