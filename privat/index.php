@@ -176,29 +176,7 @@
                     </div>
                 </div>
                 <div class="col-lg-12 mt-5">
-                    <div class="card border-0">
-                        <div class="card-body" style="min-height:30vh">
-                            <h5 class="kursus-body-header">
-                                Ulasan
-                            </h5>
-                            <div class="row mt-2">
-                                <div class="col-12 row">
-                                    <div class="col-12">
-                                        <?php if($data_ulasan->num_rows>0){
-                                            while($rowUlasan =$data_ulasan->fetch_assoc()){
-                                                echo '<p class="mt-2"><span style="color: blue; font-weight: bold;">'.$rowUlasan['nama_user'].'</span><br>'.$rowUlasan['deskripsi_review'].'</p>';
-                                            }
-                                        }else{
-                                            echo '<p>Belum ada ulasan untuk privat ini.</p>';
-                                        }
-                                        ?>
-
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                   
                     <!-- Motode belajar-->
                     <?php
                     if(isset($_SESSION["login"])){

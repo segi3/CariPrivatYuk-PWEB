@@ -54,7 +54,23 @@
             VALUE ('$enroll_id','$hari','$jam','$lokasi','$durasi',$pelaksanaan_offline,$pelaksanaan_online,0);
         ";
         // print_r($query_insert);die();
-    
+        
+
+        // ! update hours done
+
+        $query_update = "
+            UPDATE private_enrolls SET hours_done = hours_done + ".$durasi." WHERE id=".$enroll_id.";
+        ";
+
+        $con1 = open_connection();
+
+        if($con1->query($query_update)) {
+            close_connection($con1);
+
+        }
+
+
+
         if ($con->query($query_insert)) {
             close_connection($con);
 

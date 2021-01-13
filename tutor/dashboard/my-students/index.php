@@ -96,7 +96,7 @@
                                             <?php
                                                 $con = open_connection();
                                                 $query = "
-                                                SELECT P.tutor_id AS id_tutor, E.total_hours AS total_jam,E.hours_done AS progress_jam, E.approval_status AS persetujuan,
+                                                SELECT P.tutor_id AS id_tutor, E.total_hours AS total_jam, E.hours_done AS progress_jam, E.approval_status AS persetujuan,
                                                        U.fullname AS nama_user, E.completion_status as complete,
                                                        P.title AS judul_privat, E.id as enroll_id, E.pelaksanaan_online as online,
                                                        E.pelaksanaan_offline as offline
@@ -306,7 +306,6 @@
                                                 <th>Durasi</th>
                                                 <th>Lokasi</th>
                                                 <th>Action</th>
-                                                <th>Keterangan</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -463,10 +462,7 @@
                                                     <a href="<?php echo "/CariPrivatYuk-PWEB/controller/deleteJadwal.php?id=".$jadwal['jadwal_id']?>"
                                                         class="btn btn-primary btn-sm">Hapus</a>
                                                 </td>
-                                                <td>
-                                                    <p>Menunggu Konfirmasi</p>
-
-                                                </td>
+                                                
 
                                             </tr>
                                             <?php
