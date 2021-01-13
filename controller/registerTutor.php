@@ -35,7 +35,7 @@
 
     if(validateInput($fields, $inputs) && $isFileExist) {
 
-        $base_path = "C:\\xampp\\htdocs\\CariPrivatYuk-PWEB\\berkas\\";
+        $base_path = "..\\berkas\\";
 
         $ktpInfo = pathinfo($_FILES['BerkasKTP']['name']);
         // $ktpName = $ktpInfo['filename'];

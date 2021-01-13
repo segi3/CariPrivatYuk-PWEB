@@ -35,8 +35,8 @@
         $con = open_connection();
 
         $query_insert = "
-            INSERT INTO private_enrolls (user_id, private_id, total_hours, hours_done,pelaksanaan_offline,pelaksanaan_online,approval_status,payment_status,completion_status) 
-            VALUE ('$user_id','$private_id','$total_hours','0',$pelaksanaan_offline,$pelaksanaan_online,'2','2','2');
+            INSERT INTO private_enrolls (user_id, private_id, tanggal_pembelian, total_hours, hours_done,pelaksanaan_offline,pelaksanaan_online,approval_status,payment_status,completion_status) 
+            VALUE ('$user_id','$private_id', CURDATE(),'$total_hours','0',$pelaksanaan_offline,$pelaksanaan_online,'2','2','2');
         ";
         // print_r($query_insert);die();
     
