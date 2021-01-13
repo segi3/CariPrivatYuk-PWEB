@@ -20,10 +20,6 @@
     <!-- Divider -->
     <hr class="sidebar-divider">
 
-
-    <!-- Divider -->
-    <hr class="sidebar-divider">
-
     <!-- Heading Privat -->
     <div class="sidebar-heading">
         Privat
