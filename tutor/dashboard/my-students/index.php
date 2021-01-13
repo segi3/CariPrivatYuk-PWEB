@@ -80,6 +80,7 @@
                     <div class="containerrow">
                         <div class="col-lg-12 card shadow">
                             <div class="card-body">
+                                <?php require($path.'/CariPrivatYuk-PWEB/partials/flash_messages/flash.php'); ?>
                                 <div class="table-responsive">
                                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                         <thead>
@@ -270,8 +271,8 @@
                         $query2 = "
                                 SELECT S.id as jadwal_id, S.tanggal as jadwal_hari,S.jam as jadwal_jam,
                                        S.durasi as jadwal_durasi, S.lokasi as jadwal_lokasi,
-                                       S.online as online,S.offline as offline, E.pelaksanaan_online as e_online,
-                                       E.pelaksanaan_offline as e_offline,
+                                       S.online as online,S.offline as offline, 
+                                       E.pelaksanaan_online as e_online, E.pelaksanaan_offline as e_offline, E.id as enroll_id,
                                        U.fullname as user_nama,P.title as privat_judul
                                 FROM schedules S
                                 INNER JOIN private_enrolls E ON S.enroll_id=E.id
@@ -294,6 +295,7 @@
                     <div class="containerrow">
                         <div class="col-lg-12 card shadow">
                             <div class="card-body">
+                                <?php require($path.'/CariPrivatYuk-PWEB/partials/flash_messages/flash.php'); ?>
                                 <div class="table-responsive">
                                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                         <thead>
@@ -340,7 +342,7 @@
                                                         aria-hidden="true">
                                                         <div class="modal-dialog modal-lg" role="document">
                                                             <form method="POST"
-                                                                action="/CariPrivatYuk-PWEB/controller/editJadwal.php"
+                                                                action="/CariPrivatYuk-PWEB/controller/updateJadwal.php"
                                                                 enctype="multipart/form-data">
                                                                 <div class="modal-content">
                                                                     <div class="modal-header">
@@ -354,6 +356,8 @@
                                                                         </button>
                                                                     </div>
                                                                     <div class="modal-body">
+                                                                        <input type="hidden" name="enroll_id"
+                                                                            value="<?php echo $jadwal['enroll_id']?>">
                                                                         <input type="hidden" name="jadwal_id"
                                                                             value="<?php echo $jadwal['jadwal_id']?>">
                                                                         <div class="row">
@@ -456,7 +460,8 @@
                                                         </div>
                                                     </div>
                                                     <!-- End of Modal  -->
-
+                                                    <a href="<?php echo "/CariPrivatYuk-PWEB/controller/deleteJadwal.php?id=".$jadwal['jadwal_id']?>"
+                                                        class="btn btn-primary btn-sm">Hapus</a>
                                                 </td>
                                                 <td>
                                                     <p>Menunggu Konfirmasi</p>

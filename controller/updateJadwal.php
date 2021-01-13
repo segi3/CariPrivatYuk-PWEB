@@ -5,6 +5,7 @@
     $fields = ['enroll_id','jadwal_hari','jadwal_jam','jadwal_durasi','jadwal_lokasi','checkboxPelaksanaan'];
     $checkboxs = ['checkboxPelaksanaan[offline]','checkboxPelaksanaan[online]'];
     $enroll_id=$_POST['enroll_id'];
+    $jadwal_id=$_POST['jadwal_id'];
     $hari=$_POST['jadwal_hari'];
     $jam=$_POST['jadwal_jam'];
     $durasi=$_POST['jadwal_durasi'];
@@ -31,25 +32,27 @@
         'offline'               => $pelaksanaan_offline,
         'online'                => $pelaksanaan_online,
     ];
-    
-
+    // print_r($inputs);die();
     $array_error = array();
 
     if (validateInput($fields,$checkboxs, $inputs,$array_error)) {
         $con = open_connection();
 
         $query_insert = "
-            INSERT INTO schedules (enroll_id, tanggal, jam, lokasi, durasi,offline,online,status_persetujuan) 
-            VALUE ('$enroll_id','$hari','$jam','$lokasi','$durasi',$pelaksanaan_offline,$pelaksanaan_online,0);
+            update schedules 
+            set enroll_id=$enroll_id, tanggal='$hari', jam='$jam', 
+                lokasi='$lokasi', durasi=$durasi,offline=$pelaksanaan_offline,
+                online=$pelaksanaan_online,status_persetujuan=0
+            where id=$jadwal_id;
         ";
         // print_r($query_insert);die();
     
         if ($con->query($query_insert)) {
             close_connection($con);
 
-            $_SESSION['success'] = 'Berhasil mengajukan jadwal';
+            $_SESSION['success'] = 'Berhasil mengubah jadwal';
            
-            header("Location: http://localhost/CariPrivatYuk-PWEB/tutor/dashboard/my-students/");
+            header("Location: http://localhost/CariPrivatYuk-PWEB/tutor/dashboard/my-students/#jadwal");
 
             
     
@@ -59,7 +62,7 @@
             array_push($array_error, 'Gagal Input Data');
             $_SESSION['error'] = $array_error;
 
-            header("Location: http://localhost/CariPrivatYuk-PWEB/tutor/dashboard/my-students/");
+            header("Location: http://localhost/CariPrivatYuk-PWEB/tutor/dashboard/my-students/#jadwal");
 
             exit();
         }
@@ -69,7 +72,7 @@
         // die();
         $_SESSION['error'] = $array_error;
 
-        header("Location: http://localhost/CariPrivatYuk-PWEB/tutor/dashboard/my-students/");
+        header("Location: http://localhost/CariPrivatYuk-PWEB/tutor/dashboard/my-students/#jadwal");
         exit();
     }
     
