@@ -210,55 +210,26 @@
         <!-- Page level custom scripts -->
         <?php
         $con = open_connection();
-        $query = "select pelaksanaan_online + pelaksanaan_offline as jumlah from privates where id=1";
-        $query2 = "select pelaksanaan_online + pelaksanaan_offline as jumlah from privates where id=2";
-        $query3 = "select pelaksanaan_online + pelaksanaan_offline as jumlah from privates where id=3";
-        $query4 = "select pelaksanaan_online + pelaksanaan_offline as jumlah from privates where id=4";
-        $query5 = "select pelaksanaan_online + pelaksanaan_offline as jumlah from privates where id=5";
+        $query = "
+        SELECT P.title, COUNT(S.id) as pertemuans FROM privates P
+        INNER JOIN private_enrolls PE ON PE.private_id = P.id
+        INNER JOIN schedules S ON S.enroll_id = PE.id
+        WHERE P.tutor_id = ".$_SESSION['tutor_id']."
+        GROUP BY S.enroll_id
+        ";
         try {
             $data= $con->query($query);
         }catch (Exception $e){
             echo "Gagal mendapatkan data privat, " . $con->error;
         }
-        // print_r($query);
-        // print_r($data);
-        if($data->num_rows>0){
-            // echo "b";
-            $jml_berenang=$data->fetch_assoc();
-        }else{
-            // echo "A";
-        }
-        try {
-            $data2 = $con->query($query2);
-        }catch (Exception $e){
-            echo "Gagal mendapatkan data privat, " . $con->error;
-        }
-        if($data2->num_rows>0){
-            $jml_pweb=$data2->fetch_assoc();
-        }
-        try {
-            $data3= $con->query($query3);
-        }catch (Exception $e){
-            echo "Gagal mendapatkan data privat, " . $con->error;
-        }
-        if($data3->num_rows>0){
-            $jml_jss=$data3->fetch_assoc();
-        }
-        try {
-            $data4= $con->query($query4);
-        }catch (Exception $e){
-            echo "Gagal mendapatkan data privat, " . $con->error;
-        }
-        if($data4->num_rows>0){
-            $jml_ojaxcrud=$data4->fetch_assoc();
-        }
-        try {
-            $data5= $con->query($query5);
-        }catch (Exception $e){
-            echo "Gagal mendapatkan data privat, " . $con->error;
-        }
-        if($data5->num_rows>0){
-            $jml_reactbasic=$data5->fetch_assoc();
+
+        $privates = [];
+        if(isset($data)){
+            if ($data->num_rows > 0) {
+                while($row = $data->fetch_assoc()) {
+                    array_push($privates,$row);
+                }
+            }
         }
     ?>
         <script>
@@ -297,15 +268,24 @@ var ctx = document.getElementById("myBarChart");
 var myBarChart = new Chart(ctx, {
     type: 'bar',
     data: {
-        labels: ["Berenang", "PWeb", "JSS", "OJAX CRUD", "React Basic"],
+        labels: [
+            <?php
+            foreach($privates as $pr) {
+                echo("'".$pr['title']."',");
+            }
+            ?>
+        ],
         datasets: [{
             label: "Total Pertemuan",
             backgroundColor: "#4e73df",
             hoverBackgroundColor: "#2e59d9",
             borderColor: "#4e73df",
             data: [
-                <?php echo $jml_berenang['jumlah']?>, <?php echo $jml_pweb['jumlah']?>, <?php echo $jml_jss['jumlah']?>,
-                <?php echo $jml_ojaxcrud['jumlah']?>, <?php echo $jml_reactbasic['jumlah']?>
+                <?php
+                foreach($privates as $pr) {
+                    echo($pr['pertemuans'].",");
+                }
+                ?>
             ],
         }],
     },
