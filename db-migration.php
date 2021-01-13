@@ -94,6 +94,7 @@ CREATE TABLE private_enrolls (
     id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY NOT NULL,
     user_id INT UNSIGNED NOT NULL,
     private_id INT UNSIGNED NOT NULL,
+    tanggal_pembelian DATE,
     total_hours INT NOT NULL,
     hours_done INT NOT NULL,
     approval_status INT NOT NULL,
