@@ -15,6 +15,7 @@
         header("location: ".$head);
     }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -43,8 +44,8 @@
 
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"
         integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
-
-
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.js"></script>
 
 
 </head>
@@ -143,7 +144,7 @@
                                 <!-- Card Header - Dropdown -->
                                 <div
                                     class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">Murid Overview</h6>
+                                    <h6 class="m-0 font-weight-bold text-primary">Jumlah Total Pertemuan</h6>
                                     <div class="dropdown no-arrow">
                                         <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
                                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -161,8 +162,8 @@
                                 </div>
                                 <!-- Card Body -->
                                 <div class="card-body">
-                                    <div class="chart-area">
-                                        <canvas id="myAreaChart"></canvas>
+                                    <div class="chart-area" style="width: 800px;margin: 0px auto;">
+                                        <canvas id="myBarChart"></canvas>
                                     </div>
                                 </div>
                             </div>
@@ -207,7 +208,177 @@
         <script src="../../assets/dashboard_resources/vendor/chart.js/Chart.min.js"></script>
 
         <!-- Page level custom scripts -->
-        <script src="../../assets/dashboard_resources/js/demo/chart-area-demo.js"></script>
+        <?php
+        $con = open_connection();
+        $query = "select pelaksanaan_online + pelaksanaan_offline as jumlah from privates where id=1";
+        $query2 = "select pelaksanaan_online + pelaksanaan_offline as jumlah from privates where id=2";
+        $query3 = "select pelaksanaan_online + pelaksanaan_offline as jumlah from privates where id=3";
+        $query4 = "select pelaksanaan_online + pelaksanaan_offline as jumlah from privates where id=4";
+        $query5 = "select pelaksanaan_online + pelaksanaan_offline as jumlah from privates where id=5";
+        try {
+            $data= $con->query($query);
+        }catch (Exception $e){
+            echo "Gagal mendapatkan data privat, " . $con->error;
+        }
+        // print_r($query);
+        // print_r($data);
+        if($data->num_rows>0){
+            // echo "b";
+            $jml_berenang=$data->fetch_assoc();
+        }else{
+            // echo "A";
+        }
+        try {
+            $data2 = $con->query($query2);
+        }catch (Exception $e){
+            echo "Gagal mendapatkan data privat, " . $con->error;
+        }
+        if($data2->num_rows>0){
+            $jml_pweb=$data2->fetch_assoc();
+        }
+        try {
+            $data3= $con->query($query3);
+        }catch (Exception $e){
+            echo "Gagal mendapatkan data privat, " . $con->error;
+        }
+        if($data3->num_rows>0){
+            $jml_jss=$data3->fetch_assoc();
+        }
+        try {
+            $data4= $con->query($query4);
+        }catch (Exception $e){
+            echo "Gagal mendapatkan data privat, " . $con->error;
+        }
+        if($data4->num_rows>0){
+            $jml_ojaxcrud=$data4->fetch_assoc();
+        }
+        try {
+            $data5= $con->query($query5);
+        }catch (Exception $e){
+            echo "Gagal mendapatkan data privat, " . $con->error;
+        }
+        if($data5->num_rows>0){
+            $jml_reactbasic=$data5->fetch_assoc();
+        }
+    ?>
+        <script>
+
+// Set new default font family and font color to mimic Bootstrap's default styling
+Chart.defaults.global.defaultFontFamily = 'Nunito', '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
+Chart.defaults.global.defaultFontColor = '#858796';
+
+function number_format(number, decimals, dec_point, thousands_sep) {
+    // *     example: number_format(1234.56, 2, ',', ' ');
+    // *     return: '1 234,56'
+    number = (number + '').replace(',', '').replace(' ', '');
+    var n = !isFinite(+number) ? 0 : +number,
+        prec = !isFinite(+decimals) ? 0 : Math.abs(decimals),
+        sep = (typeof thousands_sep === 'undefined') ? ',' : thousands_sep,
+        dec = (typeof dec_point === 'undefined') ? '.' : dec_point,
+        s = '',
+        toFixedFix = function(n, prec) {
+            var k = Math.pow(10, prec);
+            return '' + Math.round(n * k) / k;
+        };
+    // Fix for IE parseFloat(0.55).toFixed(0) = 0;
+    s = (prec ? toFixedFix(n, prec) : '' + Math.round(n)).split('.');
+    if (s[0].length > 3) {
+        s[0] = s[0].replace(/\B(?=(?:\d{3})+(?!\d))/g, sep);
+    }
+    if ((s[1] || '').length < prec) {
+        s[1] = s[1] || '';
+        s[1] += new Array(prec - s[1].length + 1).join('0');
+    }
+    return s.join(dec);
+}
+
+// Bar Chart Example
+var ctx = document.getElementById("myBarChart");
+var myBarChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: ["Berenang", "PWeb", "JSS", "OJAX CRUD", "React Basic"],
+        datasets: [{
+            label: "Total Pertemuan",
+            backgroundColor: "#4e73df",
+            hoverBackgroundColor: "#2e59d9",
+            borderColor: "#4e73df",
+            data: [
+                <?php echo $jml_berenang['jumlah']?>, <?php echo $jml_pweb['jumlah']?>, <?php echo $jml_jss['jumlah']?>,
+                <?php echo $jml_ojaxcrud['jumlah']?>, <?php echo $jml_reactbasic['jumlah']?>
+            ],
+        }],
+    },
+    options: {
+        maintainAspectRatio: false,
+        layout: {
+            padding: {
+                left: 10,
+                right: 25,
+                top: 25,
+                bottom: 0
+            }
+        },
+        scales: {
+            xAxes: [{
+                time: {
+                    unit: 'month'
+                },
+                gridLines: {
+                    display: false,
+                    drawBorder: false
+                },
+                ticks: {
+                    maxTicksLimit: 6
+                },
+                maxBarThickness: 25,
+            }],
+            yAxes: [{
+                ticks: {
+                    min: 0,
+                    max: 10,
+                    maxTicksLimit: 5,
+                    padding: 10,
+                    // Include a dollar sign in the ticks
+                    callback: function(value, index, values) {
+                        return number_format(value);
+                    }
+                },
+                gridLines: {
+                    color: "rgb(234, 236, 244)",
+                    zeroLineColor: "rgb(234, 236, 244)",
+                    drawBorder: false,
+                    borderDash: [2],
+                    zeroLineBorderDash: [2]
+                }
+            }],
+        },
+        legend: {
+            display: false
+        },
+        tooltips: {
+            titleMarginBottom: 10,
+            titleFontColor: '#6e707e',
+            titleFontSize: 14,
+            backgroundColor: "rgb(255,255,255)",
+            bodyFontColor: "#858796",
+            borderColor: '#dddfeb',
+            borderWidth: 1,
+            xPadding: 15,
+            yPadding: 15,
+            displayColors: false,
+            caretPadding: 10,
+            callbacks: {
+                label: function(tooltipItem, chart) {
+                    var datasetLabel = chart.datasets[tooltipItem.datasetIndex].label || '';
+                    return datasetLabel + number_format(tooltipItem.yLabel);
+                }
+            }
+        },
+    }
+});
+</script>
+        <script src="../../assets/dashboard_resources/js/demo/chart-bar-demo.js"></script>
         <script src="../../assets/dashboard_resources/js/demo/chart-pie-demo.js"></script>
 
 
