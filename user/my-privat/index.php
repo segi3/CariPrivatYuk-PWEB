@@ -1,4 +1,20 @@
 <?php session_start(); ?>
+<?php 
+    $path = $_SERVER['DOCUMENT_ROOT'];
+    $dbcon = $path."/CariPrivatYuk-PWEB/db-connection.php";
+    include($dbcon);
+    
+    $head = "/CariPrivatYuk-PWEB/login/user";
+    if(isset($_SESSION['role'])){
+        if(strcmp($_SESSION['role'],'user')!=0){
+            
+            header($head);
+        }
+    }
+    else{
+        header("location: ".$head);
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -58,10 +74,31 @@
 <body>
 
     <?php include('../../partials/navbars/nav-orange.php'); ?>
-    
+
     <div class="pt-5" style="background-color: #F3F3F3;">
         <div class="container">
             <h3 class="kursus-body-header">Permintaan Privat</h3>
+            <?php
+                $query_permintaan="
+                    Select 
+                    E.id as enroll_id, P.id as private_id, T.id as tutor_id,
+                    T.fullname as tutor_name,P.title as private_title,
+                    E.payment_status as enroll_bayar, E.approval_status as enroll_approval,
+                    E.bukti_pembayaran as bukti_bayar
+                    from private_enrolls E
+                    INNER JOIN users U on E.user_id=U.id
+                    INNER JOIN privates P on E.private_id=P.id
+                    INNER JOIN tutors T on P.tutor_id=T.id
+                    WHERE U.id=".$_SESSION['user_id']."
+                ";
+                // print_r($query_permintaan);die();
+
+                $con=open_connection();
+
+                $enroll_res=$con->query($query_permintaan);
+
+            
+            ?>
             <div class="row">
 
                 <div class="col-lg-12 my-5">
@@ -76,31 +113,34 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    <?php
+                                        if($enroll_res->num_rows){
+                                            while($en=$enroll_res->fetch_assoc()){
+                                    ?>
                                     <tr>
-                                        <td>Zaenal</td>
-                                        <td>Desain Feed</td>
-                                        <td><span class="badge badge-warning">Menunggu konfirmasi mentor</span></td>
+                                        <td><?php echo $en['tutor_name']?></td>
+                                        <td><?php echo $en['private_title']?></td>
+                                        <td>
+                                            <?php
+                                                    if($en['enroll_approval']==2 && $en['enroll_bayar']==2){
+                                                        echo "<span class='badge badge-warning'>Menunggu konfirmasi mentor</span>";
+                                                    }else if($en['enroll_approval']==1 && $en['enroll_bayar']==2 && is_null($en['bukti_bayar'])){
+                                                        echo "<span class='badge badge-warning'>Menunggu pembayaran</span>";
+                                                    }else if($en['enroll_approval']==1 && $en['enroll_bayar']==2 && !is_null($en['bukti_bayar'])){
+                                                        echo "<span class='badge badge-warning'>Menunggu verifikasi tutor</span>";
+                                                    }
+                                                    else if($en['enroll_approval']==1 && $en['enroll_bayar']==1){
+                                                        echo "<span class='badge badge-success'>Telah disetujui mentor</span>";
+                                                    }
+                                                
+                                                ?>
+                                        </td>
                                     </tr>
-                                    <tr>
-                                        <td>Geiska</td>
-                                        <td>Grafika Komputer dan 3D Model</td>
-                                        <td><span class="badge badge-warning">Menunggu konfirmasi mentor</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td>A Rohman</td>
-                                        <td>Privat Renang</td>
-                                        <td><span class="badge badge-success">Telah disetujui mentor</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Mahmudi Ismail</td>
-                                        <td>Bahasa Arab</td>
-                                        <td><span class="badge badge-success">Telah disetujui mentor</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Nizar Abiyyi</td>
-                                        <td>Bahasa Russia</td>
-                                        <td><span class="badge badge-success">Telah disetujui mentor</span></td>
-                                    </tr>
+                                    <?php
+                                        
+                                            }
+                                        }
+                                    ?>
                                 </tbody>
                             </table>
                         </div>
@@ -111,197 +151,88 @@
         <div class="container">
             <h3 class="kursus-body-header">Privat Saya</h3>
             <div class="row">
-
                 <div class="col-lg-12 my-3">
                     <div class="card border-0">
                         <div class="card-body">
-                            <span class="kategori-title">Kategori: <span
-                                    class="badge badge-secondary">Bahasa</span></span>
-                            <div class="row">
-                                <!-- Satu Privat -->
-                                <div class="col-lg-12 mt-4">
-                                    <div class="kursus-head-ks d-flex justify-content-between">
-                                        <div>
-                                            <h5 class="kursus-title-ks">Bahasa Russia</h5>
 
-                                        </div>
-                                        <div>
-                                            <h7 style="color: #ffffff;">Nizar Abiyyi</h7>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-lg-12 row mt-3 pl-5">
-                                            <div class="table-responsive">
-                                                <table class="table">
-                                                    <thead>
-                                                        <th scope="col">Subjek</th>
-                                                        <th scope="col">Waktu</th>
-                                                        <th scope="col">Meeting</th>
-                                                        <th scope="col">Durasi (jam)</th>
-                                                    </thead>
-                                                    <tbody>
-                                                        <tr>
-                                                            <td>Alphabet Russia</td>
-                                                            <td>13 Feb 2020 <span class="badge badge-dark">19.00
-                                                                    WIB</span>
-                                                            </td>
-                                                            <td><a href="#">Meeting</a></td>
-                                                            <td>2 Jam</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Memperkenalkan diri</td>
-                                                            <td>14 Feb 2020 <span class="badge badge-dark">19.00
-                                                                    WIB</span>
-                                                            </td>
-                                                            <td><a href="#">Meeting</a></td>
-                                                            <td>2 Jam</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Ucapan sehari-hari</td>
-                                                            <td>15 Feb 2020 <span class="badge badge-dark">19.00
-                                                                    WIB</span>
-                                                            </td>
-                                                            <td><a href="#">Meeting</a></td>
-                                                            <td>2 Jam</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Waktu dan angka</td>
-                                                            <td>18 Feb 2020 <span class="badge badge-dark">19.00
-                                                                    WIB</span>
-                                                            </td>
-                                                            <td><a href="#">Meeting</a></td>
-                                                            <td>2 Jam</td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                            </div>
-
+                            <!-- Satu Privat -->
+                            <div class="col-lg-12 mt-4">
+                                <div class="row">
+                                    <div class="col-lg-12 row mt-3 pl-5">
+                                        <div class="table-responsive">
+                                            <table class="table">
+                                                <thead>
+                                                    <th scope="col">Judul</th>
+                                                    <th scope="col">Tutor</th>
+                                                    <th scope="col">Waktu</th>
+                                                    <th scope="col">Meeting</th>
+                                                    <th scope="col">Durasi (jam)</th>
+                                                </thead>
+                                                <tbody>
+                                                    <?php
+                                                        
+                                                        $query_jadwal="
+                                                            select P.title as judul_privat, T.fullname as nama_tutor,
+                                                            S.tanggal as tanggal_jadwal,S.jam as jam_jadwal,
+                                                            S.lokasi as lokasi_jadwal,S.durasi as durasi_jadwal,
+                                                            S.online as online,S.offline as offline
+                                                            from schedules S
+                                                            INNER JOIN private_enrolls E on E.id=S.enroll_id
+                                                            INNER JOIN privates P on P.id=E.private_id
+                                                            INNER JOIN tutors T on P.tutor_id=T.id
+                                                            WHERE E.user_id = ".$_SESSION['user_id']."
+                                                        ";
+                                                        // print_r($query_jadwal);die();
+                                                        $res=$con->query($query_jadwal);
+                                                        if($res->num_rows>0){
+                                                            while($r = $res->fetch_assoc()){
+                                                    ?>
+                                                    <tr>
+                                                        <td><?php echo $r['judul_privat']?></td>
+                                                        <td><?php echo $r['nama_tutor']?></td>
+                                                        <td><?php echo $r['tanggal_jadwal']?> <span class="badge badge-dark"><?php echo $r['jam_jadwal']?>
+                                                                WIB</span>
+                                                        </td>
+                                                        <td>
+                                                            <?php if($r['online']){?>
+                                                                <a href="//<?php echo $r['lokasi_jadwal']?>">Meeting</a>
+                                                            <?php }?>
+                                                            <?php if($r['offline']){?>
+                                                                <p><?php echo $r['lokasi_jadwal']?></p>
+                                                            <?php }?>
+                                                        </td>
+                                                        <td><?php echo $r['durasi_jadwal']?></td>
+                                                    </tr>
+                                                    <?php
+                                                            }
+                                                        }
+                                                    ?>
+                                                </tbody>
+                                            </table>
                                         </div>
 
                                     </div>
+
                                 </div>
-                                <!-- End of Satu Privat -->
-                                <div class="col-lg-12 mt-4">
-                                    <div class="kursus-head-ks d-flex justify-content-between">
-                                        <div>
-                                            <h5 class="kursus-title-ks">Bahasa Arab</h5>
-
-                                        </div>
-                                        <div>
-                                            <h7 style="color: #ffffff;">Mahmudi Ismail</h7>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-lg-12 row mt-3 pl-5">
-                                            <div class="table-responsive">
-                                                <table class="table">
-                                                    <thead>
-                                                        <th scope="col">Subjek</th>
-                                                        <th scope="col">Waktu</th>
-                                                        <th scope="col">Meeting</th>
-                                                        <th scope="col">Durasi (jam)</th>
-                                                    </thead>
-                                                    <tbody>
-                                                        <tr>
-                                                            <td>Alphabet Arab</td>
-                                                            <td>14 Feb 2020 <span class="badge badge-dark">15.00
-                                                                    WIB</span>
-                                                            </td>
-                                                            <td><a href="#">Meeting</a></td>
-                                                            <td>2 Jam</td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                            </div>
-
-                                        </div>
-
-                                    </div>
-                                </div>
-
                             </div>
+                            <!-- End of Satu Privat -->
+                        </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-12 mt-3 mb-5">
-                    <div class="card border-0">
-                        <div class="card-body">
-                            <span class="kategori-title">Kategori: <span
-                                    class="badge badge-secondary">Olahraga</span></span>
-                            <div class="row">
-                                <div class="col-lg-12 mt-4">
-                                    <div class="kursus-head-ks d-flex justify-content-between">
-                                        <div>
-                                            <h5 class="kursus-title-ks">Privat Renang</h5>
 
-                                        </div>
-                                        <div>
-                                            <h7 style="color: #ffffff;">A Rohman</h7>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-lg-12 row mt-3 pl-5">
-                                            <div class="table-responsive">
-                                                <table class="table">
-                                                    <thead>
-                                                        <th scope="col">Subjek</th>
-                                                        <th scope="col">Tanggal</th>
-                                                        <th scope="col">Meeting</th>
-                                                        <th scope="col">Durasi (jam)</th>
-                                                    </thead>
-                                                    <tbody>
-                                                        <tr>
-                                                            <td>Gaya Bebas: pt1</td>
-                                                            <td>20 Nov 2020 <span class="badge badge-dark">16.00
-                                                                    WIB</span>
-                                                            </td>
-                                                            <td>Kolam Renang Pondok Bakie Kasei</td>
-                                                            <td>3 Jam</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Gaya Bebas: pt2</td>
-                                                            <td>26 Nov 2020 <span class="badge badge-dark">16.00
-                                                                    WIB</span>
-                                                            </td>
-                                                            <td>Kolam Renang Pondok Bakie Kasei</td>
-                                                            <td>3 Jam</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Gaya Bebas: pt3</td>
-                                                            <td>30 Nov 2020 <span class="badge badge-dark">16.00
-                                                                    WIB</span>
-                                                            </td>
-                                                            <td>Kolam Renang Pondok Bakie Kasei</td>
-                                                            <td>3 Jam</td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                            </div>
 
-                                        </div>
 
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                <footer class="py-5 mt-5">
+                    <div class="container">
+                        <p class="m-0 text-center text-white">Copyright &copy; CariPrivatYuk 2021</p>
                     </div>
-                </div>
-            </div>
-        </div>
-    </div>
+                    <!-- /.container -->
+                </footer>
 
 
-
-    <footer class="py-5">
-        <div class="container">
-            <p class="m-0 text-center text-white">Copyright &copy; CariPrivatYuk 2021</p>
-        </div>
-        <!-- /.container -->
-    </footer>
-
-
-    <script src="../../assets/main_resources/vendor/jquery/jquery.min.js"></script>
-    <script src="../../assets/main_resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+                <script src="../../assets/main_resources/vendor/jquery/jquery.min.js"></script>
+                <script src="../../assets/main_resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 
 </body>
