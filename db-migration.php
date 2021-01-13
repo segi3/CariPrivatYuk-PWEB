@@ -17,8 +17,8 @@ function table_drop($table_name,$con){
     }
 
 }
+table_drop("schedules",$con);
 table_drop("reviews",$con);
-table_drop("transactions",$con);
 table_drop("private_enrolls",$con);
 table_drop("privates",$con);
 table_drop("categories",$con);
@@ -101,7 +101,7 @@ CREATE TABLE private_enrolls (
     completion_status INT NOT NULL,
     pelaksanaan_online INT NOT NULL,
     pelaksanaan_offline INT NOT NULL,
-    bukti_pembayaran VARCHAR(16) NULL,
+    bukti_pembayaran VARCHAR(255) NULL,
 
     FOREIGN KEY (user_id) REFERENCES users(id),
     FOREIGN KEY (private_id) REFERENCES privates(id)
@@ -109,26 +109,10 @@ CREATE TABLE private_enrolls (
 ";
 table_creation("private_enrolls",$table_private_enrolls,$con);
 
-$table_transactions = "
-CREATE TABLE transactions (
-    id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY NOT NULL,
-    invoice VARCHAR(16) NOT NULL,
-    user_id INT UNSIGNED NOT NULL,
-    private_id INT UNSIGNED NOT NULL,
-    order_date DATETIME,
-    purchase_date DATETIME,
-    payload LONGTEXT NOT NULL,
-
-    FOREIGN KEY (user_id) REFERENCES users(id),
-    FOREIGN KEY (private_id) REFERENCES privates(id)
-);
-";
-table_creation("transactions",$table_transactions,$con);
-
 $table_reviews = "
 CREATE TABLE reviews (
     id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY NOT NULL,
-    description VARCHAR(16) NOT NULL,
+    description VARCHAR(255) NOT NULL,
     user_id INT UNSIGNED NOT NULL,
     privat_id INT UNSIGNED NOT NULL,
 
@@ -137,6 +121,25 @@ CREATE TABLE reviews (
 );
 ";
 table_creation("reviews",$table_reviews,$con);
+
+$table_schedules = "
+CREATE TABLE schedules (
+    id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY NOT NULL,
+    enroll_id INT UNSIGNED NOT NULL,
+    tanggal VARCHAR(20) NOT NULL,
+    jam VARCHAR(16) NOT NULL,
+    lokasi VARCHAR(255) NOT NULL,
+    durasi INT NULL,
+    offline VARCHAR(16) NOT NULL,
+    online VARCHAR(16) NOT NULL,
+    status_persetujuan VARCHAR(16) NOT NULL,
+    notes VARCHAR(16) NULL,
+    notes_status INT NULL,
+    FOREIGN KEY (enroll_id) REFERENCES private_enrolls(id)
+);
+";
+table_creation("schedules",$table_schedules,$con);
+
 
 
 function table_insertion($query,$con){
