@@ -1,6 +1,7 @@
 <?php 
 $path = $_SERVER['DOCUMENT_ROOT'];
 $path .= "/CariPrivatYuk-PWEB/db-connection.php";
+$ROOT = $_SERVER['DOCUMENT_ROOT'];
 include_once($path);
 ?>
 <!-- Navigation -->
@@ -15,8 +16,8 @@ include_once($path);
             </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <!-- Form cari nama tutor -->
-                <form class="form-inline my-2 my-lg-0">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <form class="form-inline my-2 my-lg-0" action="/CariPrivatYuk-PWEB/cari/?" method="GET">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="search">
                     <button class="btn btn-primary my-2 my-sm-0" type="submit">Cari</button>
                 </form>
 
