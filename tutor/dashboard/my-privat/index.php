@@ -132,13 +132,19 @@
                                                 <?php
                                                         $con=open_connection();
                                                         // Get count
-                                                        $query="SELECT COUNT(*) as jumlah_murid FROM private_enrolls WHERE private_id=".$rowPrivat['id'].";";
+                                                        $query="SELECT COUNT(*) as jumlah_murid FROM private_enrolls E WHERE (E.payment_status=1 AND E.approval_status=1) AND private_id=".$rowPrivat['id'].";";
+                                                        // print_r($query);die();
                                                         try {
                                                             $result = $con->query($query);
                                                         }catch (Exception $e){
                                                             echo "Gagal mendapatkan data privates : , " . $con->error."<br>";
                                                         }
-                                                        $count= $result->fetch_assoc();
+                                                        if($result->num_rows>0){
+                                                            $count= $result->fetch_assoc();
+
+                                                        }else{
+                                                            $count= array('jumlah_murid'=>0);
+                                                        }
                                                         close_connection($con);
                                                 ?>
                                                 <td><?php echo $count['jumlah_murid']?></td>

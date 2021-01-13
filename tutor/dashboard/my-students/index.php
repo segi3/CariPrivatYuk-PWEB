@@ -86,27 +86,45 @@
                                                 <th>Privat</th>
                                                 <th>Jam Total</th>
                                                 <th>Jam Terlaksana</th>
+                                                <th>Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
+                                            <?php
+                                                $con = open_connection();
+                                                $query = "
+                                                SELECT P.tutor_id AS id_tutor, E.total_hours AS total_jam,E.hours_done AS progress_jam, E.approval_status AS persetujuan,
+                                                       U.fullname AS nama_user, E.completion_status as complete,
+                                                       P.title AS judul_privat
+                                                FROM private_enrolls E
+                                                INNER JOIN users U ON U.id=E.user_id
+                                                INNER JOIN privates P ON P.id=E.private_id
+                                                WHERE E.approval_status=1 AND E.payment_status=1 AND E.completion_status=2 AND P.tutor_id=".$_SESSION['tutor_id'].";
+                                                ";
+                                                // print_r($query);die();
+
+                                                try {
+                                                    $data = $con->query($query);
+                                                }catch (Exception $e){
+                                                    echo "Gagal mendapatkan data permintaan privat, " . $con->error;
+                                                }
+                                                if($data->num_rows>0){
+                                                    while($raw_data=$data->fetch_assoc()){
+                                            ?>
                                             <tr>
-                                                <td>Abdur Rohman</td>
-                                                <td>Python Master Class</td>
-                                                <td>6</td>
-                                                <td>4</td>
+                                                <td><?php echo $raw_data['nama_user']?></td>
+                                                <td><?php echo $raw_data['judul_privat']?></td>
+                                                <td><?php echo $raw_data['total_jam']?></td>
+                                                <td><?php echo $raw_data['progress_jam']?></td>
+                                                <td><p>Menunggu Progress Privat</p></td>
                                             </tr>
-                                            <tr>
-                                                <td>M Frediansyah</td>
-                                                <td>Fotografi Bagi Pemula</td>
-                                                <td>12</td>
-                                                <td>3</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Rafi Yudhistira</td>
-                                                <td>Fotografi Bagi Pemula</td>
-                                                <td>15</td>
-                                                <td>10</td>
-                                            </tr>
+                                            <?php
+                                                    }
+                                                }
+                                                close_connection($con);
+
+                                            ?>
+                                            
                                         </tbody>
                                     </table>
                                 </div>
@@ -121,11 +139,41 @@
                             Buat Jadwal
                         </button>
                     </div>
+                    <?php
+                        $con=open_connection();
+                        
+                        // $query_murid="select E.total_hours as total_waktu,E.tutor_id, E.id as id_enroll,
+                        //               E.hours_done as progress_waktu, E.pelakasanaan_offline as offline,
+                        //               E.pelaksanaan_online as online, U.fullname as nama_user
+                        //               from private_enrolls
+                        //               INNER JOIN privates P ON P.id=E.private_id
+                        //               INNER JOIN user U ON U.id = E.user_id 
+                        //               where E.tutor_id=".$_SESSION['tutor_id'].";";
+                        // $res_murid= $con->query($query);
+
+                        $query2 = "
+                                SELECT P.tutor_id AS id_tutor, E.total_hours AS total_jam,E.hours_done AS progress_jam, E.approval_status AS persetujuan,
+                                        U.fullname AS nama_user, E.completion_status as complete,
+                                        P.title AS judul_privat
+                                FROM private_enrolls E
+                                INNER JOIN users U ON U.id=E.user_id
+                                INNER JOIN privates P ON P.id=E.private_id
+                                WHERE E.approval_status=1 AND E.payment_status=1 AND E.completion_status=2 AND P.tutor_id=".$_SESSION['tutor_id'].";
+                                ";
+                        
+                        try {
+                            $data = $con->query($query2);
+                        }catch (Exception $e){
+                            echo "Gagal mendapatkan data permintaan privat, " . $con->error;
+                        }
+                        
+
+                    ?>
 
                     <!-- Modal -->
                     <div class="modal fade" id="jadwalModal" tabindex="-1" role="dialog"
                         aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog" role="document">
+                        <div class="modal-dialog modal-lg" role="document">
                             <form action="">
                                 <div class="modal-content">
                                     <div class="modal-header">
@@ -136,28 +184,27 @@
                                     </div>
                                     <div class="modal-body">
                                         <div class="form-group">
-                                            <label for="exampleFormControlSelect2">Pilih Privat</label>
+                                            <label for="exampleFormControlSelect2">Pilih Murid</label>
                                             <select class="form-control" id="exampleFormControlSelect2">
-                                                <option selected="selected">Fotografi Bagi Pemula</option>
-                                                <option>Python Master Class</option>
+                                                <option value="" selected disabled
+                                                    hidden>Pilih Murid
+                                                </option>
+                                                <?php
+                                                    if($data->num_rows>0){
+                                                        while($murid=$data->fetch_assoc()){
+                                                ?>
+                                                    <option value="<?php echo $murid['id_enroll']?>" > 
+                                                        <?php echo $murid['nama_user']." ".$murid['judul_privat']?>
+                                                    </option>
+                                                <?php   
+                                                        }
+                                                    }
+                                                ?>
+                                                 
+                                                
                                             </select>
                                         </div>
-                                        <div class="form-group">
-                                            <label for="exampleFormControlSelect3">Pilih Murid</label>
-                                            <select class="form-control" id="exampleFormControlSelect3">
-                                                <option>M Frediansyah</option>
-                                                <option>Rafi Yudhistira</option>
-                                            </select>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="exampleFormControlSelect4">Pilih Subjek</label>
-                                            <select class="form-control" id="exampleFormControlSelect4">
-                                                <option>Komposisi cahaya</option>
-                                                <option>Komposisi foto</option>
-                                                <option>Foto Makro</option>
-                                                <option>Foto Landscape</option>
-                                            </select>
-                                        </div>
+                                       
                                         <div class="row">
                                             <div class="col-lg-6">
                                                 <div class="form-group">
@@ -174,23 +221,6 @@
                                                 </div>
                                             </div>
                                             <div class="col-lg-12">
-                                                <div class="form-check">
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" type="radio"
-                                                            name="exampleRadios" id="exampleRadios1" value="option1"
-                                                            checked>
-                                                        <label class="form-check-label" for="exampleRadios1">
-                                                            Online
-                                                        </label>
-                                                    </div>
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" type="radio"
-                                                            name="exampleRadios" id="exampleRadios2" value="option2">
-                                                        <label class="form-check-label" for="exampleRadios2">
-                                                            Offline
-                                                        </label>
-                                                    </div>
-                                                </div>
                                                 <div class="form-group">
                                                     <label for="exampleInputEmail6">Lokasi</label>
                                                     <input type="email" class="form-control" id="exampleInputEmail6"

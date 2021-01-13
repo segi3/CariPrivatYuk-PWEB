@@ -34,13 +34,16 @@ CREATE TABLE `privates` (
   KEY `tutor_id` (`tutor_id`),
   CONSTRAINT `privates_ibfk_1` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`),
   CONSTRAINT `privates_ibfk_2` FOREIGN KEY (`tutor_id`) REFERENCES `tutors` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4;
 
 /*Data for the table `privates` */
 
 insert  into `privates`(`id`,`title`,`category_id`,`tutor_id`,`price_per_hour`,`pelaksanaan_online`,`pelaksanaan_offline`,`method`) values 
-(1,'Berenang',7,2,50000,0,1,'Privat dilakukan secara offline di kolam renang yang di setujui.  Tutor mengajarkan langsung praktik berenang mulai dari yang paling dasar di iringi penyampaian teori saat praktik berlangsung.'),
-(2,'PWEB',5,2,100000,1,1,'Pengajaran Materi Dengan PPT dan Live Coding.');
+(1,'Berenang 2',7,2,50000,0,1,'Privat dilakukan secara offline di kolam renang yang di setujui.  Tutor mengajarkan langsung praktik berenang mulai dari yang paling dasar di iringi penyampaian teori saat praktik berlangsung.'),
+(2,'PWEB',5,2,100000,1,1,'Pengajaran Materi Dengan PPT dan Live Coding.'),
+(3,'JSS',5,2,100000,1,1,'Belajar JSS dari awal.'),
+(4,'OJAX CRUD',5,2,30000,1,0,'Metodologi Live Coding dengan bimbingan tutor.'),
+(5,'React Basic',5,2,50000,1,1,'Belajar React');
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;

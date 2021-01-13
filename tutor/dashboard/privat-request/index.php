@@ -76,6 +76,7 @@
                     <div class="containerrow">
                         <div class="col-lg-12 card shadow">
                             <div class="card-body">
+                                <?php require($_SERVER['DOCUMENT_ROOT'].'/CariPrivatYuk-PWEB/partials/flash_messages/flash.php'); ?>
                                 <div class="table-responsive">
                                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                         <thead>
@@ -85,18 +86,71 @@
                                                 <th>Privat</th>
                                                 <th>Durasi</th>
                                                 <th>Action</th>
+                                                <th>Keterangan</th>
                                             </tr>
                                         </thead>
                                         <tbody>
+                                            <?php 
+                                                $con = open_connection();
+                                                $query = "
+                                                SELECT P.tutor_id AS id_tutor, E.total_hours AS total_jam, E.approval_status AS persetujuan,
+                                                       E.pelaksanaan_online AS online, E.pelaksanaan_offline AS offline,E.payment_status as pembayaran,
+                                                       E.bukti_pembayaran AS bukti_bayar, U.fullname AS nama_user, E.total_hours*P.price_per_hour as harga,
+                                                       U.email AS email_user, P.title AS judul_privat, E.id as id_enroll
+                                                FROM private_enrolls E
+                                                INNER JOIN users U ON U.id=E.user_id
+                                                INNER JOIN privates P ON P.id=E.private_id
+                                                WHERE (E.payment_status=2 OR E.approval_status=2) AND P.tutor_id=".$_SESSION['tutor_id'].";
+                                                ";
+                                                // print_r($query);die();
+
+                                                try {
+                                                    $data = $con->query($query);
+                                                }catch (Exception $e){
+                                                    echo "Gagal mendapatkan data permintaan privat, " . $con->error;
+                                                }
+                                                if($data->num_rows>0){
+                                                    while($raw_data=$data->fetch_assoc()){
+                                            ?>
                                             <tr>
-                                                <td>Imam Ikta</td>
-                                                <td>ikta@email.com</td>
-                                                <td>Python Master Class</td>
-                                                <td>10 jam</td>
-                                                <td><a href="#" class="btn btn-success btn-sm">Terima</a><a href="#"
-                                                        class="btn btn-danger btn-sm">Tolak</a></td>
+                                                <td><?php echo $raw_data['nama_user']?></td>
+                                                <td><?php echo $raw_data['email_user']?></td>
+                                                <td><?php echo $raw_data['judul_privat']?></td>
+                                                <td><?php echo $raw_data['total_jam']." Jam"?></td>
+                                                <td>
+                                                <?php
+                                                    if($raw_data['persetujuan']==1){
+                                                        if(!is_null($raw_data["bukti_bayar"])){
+                                                ?>
+                                                    <a href="<?php echo "/CariPrivatYuk-PWEB/controller/updateVerifyEnrolls.php?id=".$raw_data["id_enroll"];?>" class="btn btn-success btn-sm">Verify</a>
+                                                    <a href="<?php echo "/CariPrivatYuk-PWEB/berkas/bukti_bayar/".$raw_data["bukti_bayar"];?>" class="btn btn-info btn-sm">Bukti Pembayaran</a>
+                                                <?php   }else{ echo "Menunggu Pembayaran";}
+                                                    }else{?>
+                                                    <a href="<?php echo "/CariPrivatYuk-PWEB/controller/updateAproveEnrolls.php?id=".$raw_data["id_enroll"];?>" class="btn btn-success btn-sm">Terima</a>
+                                                    <a href="<?php echo "/CariPrivatYuk-PWEB/controller/updateRejectEnrolls.php?id=".$raw_data["id_enroll"];?>" class="btn btn-danger btn-sm">Tolak</a>
+                                                <?php }?>
+
+                                                </td>
+
+                                                <td>
+                                                <?php
+                                                    if($raw_data['persetujuan']==1){
+                                                ?>
+                                                    <p><?php echo "Total harga : Rp. ".$raw_data["harga"];?></p>
+                                                <?php }else{?>
+                                                    <p><?php echo "Total harga : Rp. ".$raw_data["harga"];?></p>
+                                                <?php }?>
+
+                                                </td>
+                                                
                                             </tr>
-                                            <tr>
+                                            <?php
+                                                    }
+                                                }
+
+                                            ?>
+                                            
+                                            <!-- <tr>
                                                 <td>Nodas</td>
                                                 <td>nodas@email.com</td>
                                                 <td>Python Master Class</td>
@@ -111,7 +165,7 @@
                                                 <td>10 jam</td>
                                                 <td><a href="#" class="btn btn-success btn-sm">Terima</a><a href="#"
                                                         class="btn btn-danger btn-sm">Tolak</a></td>
-                                            </tr>
+                                            </tr> -->
                                         </tbody>
                                     </table>
                                 </div>

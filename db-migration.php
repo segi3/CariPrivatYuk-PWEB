@@ -17,12 +17,14 @@ function table_drop($table_name,$con){
     }
 
 }
+table_drop("reviews",$con);
 table_drop("transactions",$con);
 table_drop("private_enrolls",$con);
 table_drop("privates",$con);
 table_drop("categories",$con);
 table_drop("users",$con);
 table_drop("tutors",$con);
+
 echo "<br>";
 // Fungsi untuk menajalankan pembuatan table
 function table_creation($table_name,$query,$con){
@@ -95,6 +97,11 @@ CREATE TABLE private_enrolls (
     total_hours INT NOT NULL,
     hours_done INT NOT NULL,
     approval_status INT NOT NULL,
+    payment_status INT NOT NULL,
+    completion_status INT NOT NULL,
+    pelaksanaan_online INT NOT NULL,
+    pelaksanaan_offline INT NOT NULL,
+    bukti_pembayaran VARCHAR(16) NULL,
 
     FOREIGN KEY (user_id) REFERENCES users(id),
     FOREIGN KEY (private_id) REFERENCES privates(id)
@@ -118,6 +125,18 @@ CREATE TABLE transactions (
 ";
 table_creation("transactions",$table_transactions,$con);
 
+$table_reviews = "
+CREATE TABLE reviews (
+    id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY NOT NULL,
+    description VARCHAR(16) NOT NULL,
+    user_id INT UNSIGNED NOT NULL,
+    privat_id INT UNSIGNED NOT NULL,
+
+    FOREIGN KEY (user_id) REFERENCES users(id),
+    FOREIGN KEY (privat_id) REFERENCES privates(id)
+);
+";
+table_creation("reviews",$table_reviews,$con);
 
 
 function table_insertion($query,$con){
@@ -156,10 +175,22 @@ table_insertion("insert  into `tutors`(`fullname`,`address`,`email`,`password`,`
 
 echo "<br>";
 table_insertion("insert  into `privates`(`title`,`category_id`,`tutor_id`,`price_per_hour`,`pelaksanaan_online`,`pelaksanaan_offline`,`method`) values 
-('Berenang',7,2,50000,0,1,'Privat dilakukan secara offline di kolam renang yang di setujui.  Tutor mengajarkan langsung praktik berenang mulai dari yang paling dasar di iringi penyampaian teori saat praktik berlangsung.')",$con);
+('Berenang',7,1,50000,0,1,'Privat dilakukan secara offline di kolam renang yang di setujui.  Tutor mengajarkan langsung praktik berenang mulai dari yang paling dasar di iringi penyampaian teori saat praktik berlangsung.')",$con);
 table_insertion("insert  into `privates`(`title`,`category_id`,`tutor_id`,`price_per_hour`,`pelaksanaan_online`,`pelaksanaan_offline`,`method`) values 
 ('PWEB',5,2,100000,1,1,'Pengajaran Materi Dengan PPT dan Live Coding.')",$con);
+table_insertion("insert  into `privates`(`title`,`category_id`,`tutor_id`,`price_per_hour`,`pelaksanaan_online`,`pelaksanaan_offline`,`method`) values 
+('JSS',5,2,100000,1,1,'Belajar JSS dari awal.')",$con);
+table_insertion("insert  into `privates`(`title`,`category_id`,`tutor_id`,`price_per_hour`,`pelaksanaan_online`,`pelaksanaan_offline`,`method`) values 
+('OJAX CRUD',5,2,30000,1,0,'Metodologi Live Coding dengan bimbingan tutor.')",$con);
+table_insertion("insert  into `privates`(`title`,`category_id`,`tutor_id`,`price_per_hour`,`pelaksanaan_online`,`pelaksanaan_offline`,`method`) values 
+('React Basic',5,2,50000,1,1,'Belajar React')",$con);
 
+echo "<br>";
+
+table_insertion("insert  into `private_enrolls`(`user_id`,`private_id`,`total_hours`,`hours_done`,`approval_status`,`payment_status`,`completion_status`,`pelaksanaan_online`,`pelaksanaan_offline`,`bukti_pembayaran`) values 
+(2,3,10,0,2,2,2,1,0,NULL),
+(2,2,12,0,2,2,2,1,0,NULL),
+(2,1,24,0,2,2,2,0,1,NULL);",$con);
 
 
 close_connection($con);

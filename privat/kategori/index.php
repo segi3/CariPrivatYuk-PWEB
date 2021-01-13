@@ -73,7 +73,8 @@
 
 <body>
 
-    <?php include('../../partials/navbars/nav-orange.php'); ?>
+    <!-- Nav -->
+    <?php include($path.'/CariPrivatYuk-PWEB/partials/navbars/nav-orange.php'); ?>
 
     <?php
 
@@ -86,7 +87,7 @@
     $con = open_connection();
 
     $query = "
-        SELECT C.title as nama_kategori, P.title as judul_privat, T.fullname as nama_tutor, P.price_per_hour as harga_privat, T.path_foto as foto_privat FROM privates P
+        SELECT P.id as private_id, C.title as nama_kategori, P.title as judul_privat, T.fullname as nama_tutor, P.price_per_hour as harga_privat, T.path_foto as foto_privat FROM privates P
         INNER JOIN categories C ON C.id = P.category_id
         INNER JOIN tutors T ON T.id = P.tutor_id
         WHERE C.slug='".$slug."';
@@ -134,133 +135,32 @@
 
         <h1 class="my-5" style="text-align: center;">Kategori: <?php echo $kategori[0]['title']; ?></h1>
 
-        <div class="row" id="kurus-pop" style="height:100vh">
+        <div class="row" id="kurus-pop" style="min-height:100vh">
             <?php
             
             foreach($kursus as $k) {
                 ?>
-            <div class="col-lg-4 mb-4">
-                <div class="card h-100 border-0">
-                    <a href="privat"><img class="card-img-top"
-                            src="<?php echo($privat_image.$k['foto_privat']); ?>" alt="<?php echo($privat_image.$k['foto_privat']); ?>"></a>
-                    <div class="card-body">
-                        <h5 class="card-title"><?php echo($k['nama_tutor']); ?></h5>
-                        <p class="card-text"><?php echo($k['judul_privat']); ?></p>
-                        <div class="row">
-                            <div class="col-9">
-                                <span class="price-tag"><?php echo($k['harga_privat']); ?> </span><span
-                                    class="hr-tag">/jam</span>
+                <div class="col-lg-4 mb-4">
+                    <div class="card h-100 border-0">
+                        <a href="/CariPrivatYuk-PWEB/privat/?id=<?php echo $k['private_id']?>"><img class="card-img-top" 
+                                src="<?php echo($privat_image.$k['foto_privat']); ?>" alt="<?php echo($privat_image.$k['foto_privat']); ?>"></a>
+                        <div class="card-body">
+                            <h5 class="card-title"><?php echo($k['nama_tutor']); ?></h5>
+                            <p class="card-text"><?php echo($k['judul_privat']); ?></p>
+                            <div class="row">
+                                <div class="col-9">
+                                    <span class="price-tag"><?php echo($k['harga_privat']); ?> </span><span
+                                        class="hr-tag">/jam</span>
+                                </div>
+                                <a href="/CariPrivatYuk-PWEB/privat/?id=<?php echo $k['private_id']?>" class="col-2 btn btn-primary beli-btn">Cek</a>
                             </div>
-                            <a href="privat" class="col-2 btn btn-primary beli-btn">Cek</a>
                         </div>
                     </div>
                 </div>
-            </div>
 
             <?php
             }
         ?>
-            <!-- <div class="col-lg-4 mb-4">
-                <div class="card h-100 border-0">
-                    <a href="privat"><img class="card-img-top" src="../../assets/main_resources/kursus/mentor/1.jpg"
-                            alt=""></a>
-                    <div class="card-body">
-                        <h5 class="card-title">Eja Suryono</h5>
-                        <p class="card-text">Bahasa Jerman</p>
-                        <div class="row">
-                            <div class="col-9">
-                                <span class="price-tag">Rp 179.999 </span><span class="hr-tag">/jam</span>
-                            </div>
-                            <a href="privat" class="col-2 btn btn-primary beli-btn">Cek</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 mb-4">
-                <div class="card h-100 border-0">
-                    <a href="privat"><img class="card-img-top" src="../../assets/main_resources/kursus/mentor/2.jpg"
-                            alt=""></a>
-                    <div class="card-body">
-                        <h5 class="card-title">Chelsea Hassanah</h5>
-                        <p class="card-text">Personal Trainer</p>
-                        <div class="row">
-                            <div class="col-9">
-                                <span class="price-tag">Rp 179.999 </span><span class="hr-tag">/jam</span>
-                            </div>
-
-                            <a href="privat" class="col-2 btn btn-primary beli-btn">Cek</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 mb-4">
-                <div class="card h-100 border-0">
-                    <a href="privat"><img class="card-img-top" src="../../assets/main_resources/kursus/mentor/3.jpg"
-                            alt=""></a>
-                    <div class="card-body">
-                        <h5 class="card-title">Banara Wisnu Pranowo</h5>
-                        <p class="card-text">Pemrograman Web/Android</p>
-                        <div class="row">
-                            <div class="col-9">
-                                <span class="price-tag">Rp 179.999 </span><span class="hr-tag">/jam</span>
-                            </div>
-
-                            <a href="privat" class="col-2 btn btn-primary beli-btn">Cek</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 mb-4">
-                <div class="card h-100 border-0">
-                    <a href="privat"><img class="card-img-top" src="../../assets/main_resources/kursus/mentor/4.jpg"
-                            alt=""></a>
-                    <div class="card-body">
-                        <h5 class="card-title">Winda Prastuti</h5>
-                        <p class="card-text">Akting Seni Peran</p>
-                        <div class="row">
-                            <div class="col-9">
-                                <span class="price-tag">Rp 179.999 </span><span class="hr-tag">/jam</span>
-                            </div>
-
-                            <a href="privat" class="col-2 btn btn-primary beli-btn">Cek</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 mb-4">
-                <div class="card h-100 border-0">
-                    <a href="privat"><img class="card-img-top" src="../../assets/main_resources/kursus/mentor/5.jpg"
-                            alt=""></a>
-                    <div class="card-body">
-                        <h5 class="card-title">Irfan Maulana</h5>
-                        <p class="card-text">Ilmu Pengetahuan Alam</p>
-                        <div class="row">
-                            <div class="col-9">
-                                <span class="price-tag">Rp 179.999 </span><span class="hr-tag">/jam</span>
-                            </div>
-
-                            <a href="privat" class="col-2 btn btn-primary beli-btn">Cek</a>
-                        </div>
-                    </div>
-                </div>
-            </div> -->
-            <!-- <div class="col-lg-4 mb-4">
-                <div class="card h-100 border-0">
-                    <a href="privat"><img class="card-img-top" src="../../assets/main_resources/kursus/mentor/6.jpg"
-                            alt=""></a>
-                    <div class="card-body">
-                        <h5 class="card-title">Rini Paramita Lestari</h5>
-                        <p class="card-text">Biola</p>
-                        <div class="row">
-                            <div class="col-9">
-                                <span class="price-tag">Rp 179.999 </span><span class="hr-tag">/jam</span>
-                            </div>
-
-                            <a href="privat" class="col-2 btn btn-primary beli-btn">Cek</a>
-                        </div>
-                    </div>
-                </div>
-            </div> -->
         </div>
     </div>
 
